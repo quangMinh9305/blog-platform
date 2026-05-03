@@ -1,1 +1,8 @@
-# blog-platform
+# Blog Platform
+
+# Core Features
+
+## User Management
+
+
+
