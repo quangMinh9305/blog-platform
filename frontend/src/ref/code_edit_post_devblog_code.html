@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevBlog - Edit Post</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dce1ff",
+                        "on-error-container": "#93000a",
+                        "error-red": "#DB4241",
+                        "outline-variant": "#c4c5d7",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#003bb5",
+                        "surface-bright": "#f9f9f9",
+                        "success-green": "#399E43",
+                        "primary-blue-darker": "#092B89",
+                        "outline": "#747686",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed": "#ffdbcf",
+                        "inverse-on-surface": "#f1f1f1",
+                        "accent-blue-light": "#8FB6FF",
+                        "primary-container": "#1d52de",
+                        "surface-tint": "#1b51dd",
+                        "secondary-container": "#dce0e6",
+                        "danger-red": "#F2706E",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary-fixed-dim": "#c2c7cd",
+                        "neutral-charcoal": "#18181B",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-tertiary": "#F3FBF6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#42474c",
+                        "on-background": "#1b1b1b",
+                        "tertiary": "#842900",
+                        "neutral-off-white": "#F5F9FF",
+                        "tertiary-container": "#ac3800",
+                        "primary-blue-dark": "#0F3BB7",
+                        "on-secondary-fixed": "#171c20",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#ffd1c1",
+                        "on-primary-fixed-variant": "#003ab3",
+                        "secondary-fixed": "#dfe3e9",
+                        "background": "#f9f9f9",
+                        "inverse-surface": "#303030",
+                        "on-surface": "#1b1b1b",
+                        "neutral-dark-gray": "#27272A",
+                        "on-secondary-container": "#5e6368",
+                        "on-primary-container": "#d2d9ff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "secondary": "#5a5f64",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeee",
+                        "on-primary-fixed": "#001550",
+                        "neutral-medium-gray": "#EEEEEE",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#434655",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "neutral-light-gray": "#F4F4F5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-tertiary-fixed-variant": "#822800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "8px",
+                        "xxl": "48px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "sm": "12px",
+                        "sidebar-width": "248px",
+                        "layout-max": "1088px"
+                    },
+                    "fontFamily": {
+                        "link-standalone": ["Work Sans", "sans-serif"],
+                        "h1-display": ["Manrope", "sans-serif"],
+                        "body-regular": ["Work Sans", "sans-serif"],
+                        "h2-heading": ["Manrope", "sans-serif"],
+                        "body-standard": ["Work Sans", "sans-serif"],
+                        "nav-display": ["Work Sans", "sans-serif"],
+                        "label-caption": ["Work Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "link-standalone": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "h1-display": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "body-regular": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h2-heading": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "body-standard": ["14px", { "lineHeight": "19.25px", "fontWeight": "500" }],
+                        "nav-display": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "label-caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface h-screen flex flex-col overflow-hidden font-body-regular text-body-regular">
+<!-- Top Bar -->
+<header class="bg-white border-b border-surface-container flex items-center justify-between px-6 h-16 shrink-0 z-10 shadow-sm">
+<div class="flex items-center gap-4">
+<a class="text-secondary hover:text-primary transition-colors flex items-center gap-2 group font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                My Posts
+            </a>
+<div class="h-6 w-px bg-surface-container mx-2"></div>
+<h1 class="font-h1-display text-h1-display text-on-surface">Edit Post</h1>
+<span class="bg-surface-tertiary text-success-green px-3 py-1 rounded-full text-label-caption font-label-caption ml-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Published
+            </span>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-on-surface hover:bg-primary-container/10 px-4 py-2 rounded-lg transition-colors font-link-standalone text-link-standalone flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">visibility</span> View post
+            </a>
+<button class="bg-white text-primary border border-surface-container hover:bg-neutral-off-white px-4 h-[36px] rounded-lg transition-colors shadow-[0px_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0px_4px_6px_rgba(0,0,0,0.15)] font-body-standard text-body-standard">
+                Save changes
+            </button>
+<button class="bg-primary-container text-white hover:bg-primary-blue-dark px-4 h-[36px] rounded-lg transition-all shadow-[0px_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0px_4px_6px_rgba(0,0,0,0.15)] font-body-standard text-body-standard flex items-center gap-2">
+                 Update &amp; Publish
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Editor -->
+<div class="flex-1 bg-white overflow-y-auto border-r border-surface-container">
+<div class="max-w-3xl mx-auto py-12 px-8">
+<input class="w-full text-4xl font-h1-display font-bold text-on-surface border-none focus:ring-0 p-0 placeholder-secondary mb-8 bg-transparent" placeholder="Post Title" type="text" value="The Future of Serverless Architecture in Enterprise Applications"/>
+<!-- Simulated Editor Toolbar -->
+<div class="flex items-center gap-2 border-y border-surface-container py-3 mb-8 text-secondary">
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_italic</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">link</span></button>
+<div class="h-4 w-px bg-surface-container mx-2"></div>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_h1</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_h2</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_quote</span></button>
+<div class="h-4 w-px bg-surface-container mx-2"></div>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">format_list_numbered</span></button>
+<div class="h-4 w-px bg-surface-container mx-2"></div>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">code</span></button>
+<button class="hover:text-primary transition-colors hover:bg-surface-container-low p-1 rounded"><span class="material-symbols-outlined">image</span></button>
+</div>
+<div class="prose prose-blue max-w-none font-body-regular text-body-regular text-on-surface-variant leading-relaxed outline-none min-h-[500px]" contenteditable="true">
+<p>Serverless computing has fundamentally shifted how we think about building and deploying applications. By abstracting away the underlying infrastructure, development teams can focus entirely on writing business logic. However, adopting serverless at an enterprise scale introduces unique challenges that must be carefully managed.</p>
+<br/>
+<h2 class="text-xl font-h2-heading text-on-surface mb-4 mt-6">Cold Starts and Performance Mitigation</h2>
+<p>One of the most frequently discussed drawbacks of serverless functions is the 'cold start' latency. When a function has not been invoked recently, the cloud provider must allocate resources and initialize the execution environment before running the code. For latency-sensitive enterprise applications, this delay can be unacceptable.</p>
+</div>
+</div>
+</div>
+<!-- Right Sidebar -->
+<aside class="w-80 bg-surface-bright overflow-y-auto shrink-0 flex flex-col">
+<div class="p-6 flex-1 space-y-8">
+<!-- Cover Image -->
+<section>
+<h3 class="font-h2-heading text-h2-heading text-on-surface mb-4">Cover Image</h3>
+<div class="relative group rounded-xl overflow-hidden aspect-video bg-surface-container border border-surface-container cursor-pointer">
+<img alt="Cover Image" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="A modern, abstract representation of serverless cloud computing. Glowing blue and white data streams flow through a clean, minimalist digital landscape. The lighting is high-key and soft, emphasizing a bright, professional tech aesthetic. The color palette focuses on deep blues, pristine whites, and subtle cool grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZZfIJpElgWbfSoV07XWo6GUOR4lHDPruCbcP7ZdNXFUxti-eZT3mogHKqYvq3pCj6P4dsm6me27Kp9n3G-i3r3XbTz-iwbJzBCEkZs5OpgZiWp2jJrWiu01pRf1xEDELC9e9b7rtidyU5LvdXDjpB-ZVi9ysTSysNSMV6jhhROodPODoo7hIsYc0HMVYh65y1sp27s0ZtZqyfwrx5lSBRKTYaD63ID6x9zZ-n3QPiGn00GZr2y65q8mJpWFA28ZWS2dxDqNQZZxU"/>
+<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-body-standard text-body-standard flex items-center gap-2">
+<span class="material-symbols-outlined">image</span> Replace image
+                            </span>
+</div>
+</div>
+</section>
+<!-- Tags -->
+<section>
+<h3 class="font-h2-heading text-h2-heading text-on-surface mb-4">Tags</h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="bg-primary-container/10 text-primary-blue-darker px-3 py-1.5 rounded-full text-label-caption font-label-caption flex items-center gap-1 group cursor-pointer hover:bg-primary-container/20 transition-colors">
+                            Architecture
+                            <span class="material-symbols-outlined text-[14px] opacity-50 group-hover:opacity-100">close</span>
+</span>
+<span class="bg-primary-container/10 text-primary-blue-darker px-3 py-1.5 rounded-full text-label-caption font-label-caption flex items-center gap-1 group cursor-pointer hover:bg-primary-container/20 transition-colors">
+                            Serverless
+                            <span class="material-symbols-outlined text-[14px] opacity-50 group-hover:opacity-100">close</span>
+</span>
+<span class="bg-primary-container/10 text-primary-blue-darker px-3 py-1.5 rounded-full text-label-caption font-label-caption flex items-center gap-1 group cursor-pointer hover:bg-primary-container/20 transition-colors">
+                            Cloud
+                            <span class="material-symbols-outlined text-[14px] opacity-50 group-hover:opacity-100">close</span>
+</span>
+</div>
+<div class="relative">
+<input class="w-full h-[36px] bg-white border border-surface-container rounded-lg px-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm font-body-regular text-body-regular" placeholder="Add tags..." type="text"/>
+</div>
+</section>
+<!-- SEO -->
+<section>
+<h3 class="font-h2-heading text-h2-heading text-on-surface mb-4">SEO Details</h3>
+<div class="space-y-4">
+<div>
+<label class="block text-label-caption font-label-caption text-secondary mb-1">Meta Description</label>
+<textarea class="w-full bg-white border border-surface-container rounded-lg p-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm font-body-regular text-body-regular text-on-surface-variant resize-none" rows="3">Explore the benefits and challenges of scaling serverless architecture for enterprise applications, focusing on cold starts and optimization strategies.</textarea>
+</div>
+</div>
+</section>
+</div>
+<!-- Danger Zone -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/50">
+<h3 class="font-h2-heading text-h2-heading text-error-red mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined">warning</span> Danger zone
+                </h3>
+<p class="text-label-caption font-label-caption text-secondary mb-4">These actions are permanent and cannot be undone.</p>
+<div class="space-y-2">
+<button class="w-full text-left px-4 py-2 rounded-lg text-danger-red hover:bg-danger-red/10 transition-colors font-body-standard text-body-standard flex items-center gap-3 group">
+<span class="material-symbols-outlined text-danger-red group-hover:scale-110 transition-transform">archive</span> Move to archive
+                    </button>
+<button class="w-full text-left px-4 py-2 rounded-lg text-error hover:bg-error/10 transition-colors font-body-standard text-body-standard flex items-center gap-3 group">
+<span class="material-symbols-outlined text-error group-hover:scale-110 transition-transform">delete_forever</span> Delete post
+                    </button>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

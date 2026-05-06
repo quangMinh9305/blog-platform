@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevBlog - Understanding Binary Search Trees</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1b1b1b",
+                    "on-primary-container": "#d2d9ff",
+                    "tertiary-fixed": "#ffdbcf",
+                    "surface-container-lowest": "#ffffff",
+                    "neutral-light-gray": "#F4F4F5",
+                    "inverse-on-surface": "#f1f1f1",
+                    "primary-container": "#1d52de",
+                    "tertiary-fixed-dim": "#ffb59b",
+                    "on-primary-fixed": "#001550",
+                    "secondary-fixed-dim": "#c2c7cd",
+                    "on-secondary-fixed-variant": "#42474c",
+                    "surface-container-low": "#f3f3f3",
+                    "on-secondary-fixed": "#171c20",
+                    "outline": "#747686",
+                    "primary-fixed": "#dce1ff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "on-tertiary-fixed": "#380d00",
+                    "danger-red": "#F2706E",
+                    "surface-container-highest": "#e2e2e2",
+                    "inverse-primary": "#b6c4ff",
+                    "on-surface-variant": "#434655",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1b1b1b",
+                    "neutral-medium-gray": "#EEEEEE",
+                    "accent-blue-light": "#8FB6FF",
+                    "surface-container": "#eeeeee",
+                    "on-tertiary-fixed-variant": "#822800",
+                    "on-tertiary-container": "#ffd1c1",
+                    "secondary-fixed": "#dfe3e9",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#dce0e6",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary-container": "#5e6368",
+                    "surface-tint": "#1b51dd",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "neutral-off-white": "#F5F9FF",
+                    "surface": "#f9f9f9",
+                    "on-primary-fixed-variant": "#003ab3",
+                    "primary-blue-dark": "#0F3BB7",
+                    "on-error-container": "#93000a",
+                    "success-green": "#399E43",
+                    "neutral-dark-gray": "#27272A",
+                    "neutral-charcoal": "#18181B",
+                    "error-red": "#DB4241",
+                    "outline-variant": "#c4c5d7",
+                    "secondary": "#5a5f64",
+                    "primary-blue-darker": "#092B89",
+                    "inverse-surface": "#303030",
+                    "surface-tertiary": "#F3FBF6",
+                    "surface-dim": "#dadada",
+                    "tertiary-container": "#ac3800",
+                    "surface-container-high": "#e8e8e8",
+                    "background": "#f9f9f9",
+                    "surface-variant": "#e2e2e2",
+                    "tertiary": "#842900",
+                    "primary": "#003bb5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "48px",
+                    "sidebar-width": "248px",
+                    "md": "16px",
+                    "base": "4px",
+                    "layout-max": "1088px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "xs": "8px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "h1-display": ["manrope", "sans-serif"],
+                    "label-caption": ["workSans", "sans-serif"],
+                    "h2-heading": ["manrope", "sans-serif"],
+                    "body-standard": ["workSans", "sans-serif"],
+                    "nav-display": ["workSans", "sans-serif"],
+                    "link-standalone": ["workSans", "sans-serif"],
+                    "body-regular": ["workSans", "sans-serif"]
+            },
+            "fontSize": {
+                    "h1-display": ["24px", {"lineHeight": "30px", "fontWeight": "700"}],
+                    "label-caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "h2-heading": ["16px", {"lineHeight": "22px", "fontWeight": "700"}],
+                    "body-standard": ["14px", {"lineHeight": "19.25px", "fontWeight": "500"}],
+                    "nav-display": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "link-standalone": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-regular": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex font-body-regular">
+<!-- Top Navigation (Mobile) -->
+<nav class="md:hidden sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-neutral-medium-gray shadow-sm h-16 flex items-center justify-between px-6">
+<div class="text-xl font-black tracking-tight text-primary-container">DevBlog</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-outline">search</span>
+<span class="material-symbols-outlined text-outline">notifications</span>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-neutral-medium-gray" data-alt="A small, professional avatar of a young tech professional with short dark hair, wearing a casual light blue button-down shirt. The background is a soft, muted grey, indicating a standard professional headshot used for an online profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmrVdM7XrgB8OJ8T6UpGyDQaK_WekQ3TNHM2izaBAPertLCJKursNdcSy9tUUqmD1qZ1WRx6OE8ztEJd8sJACEIj7D6ckRKiuEqsvqE0jGKxELymfT_DbEZ_-vV9sOrHNUU4XpYNoQG7w1BA163DFGMlypTLeTXPXinO7Ps5BovjA3oTDLccLn_-5zl-Kt5jJn8J9rF7SL6XVWADOjEJOT0YTnhmj9cKFBcIXybwW7iTstaNouQ5nbWxQeVLoULgxtJm9glLg7KhQ"/>
+</div>
+</nav>
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden lg:flex flex-col py-6 px-4 space-y-2 fixed left-0 top-0 h-full w-sidebar-width overflow-y-auto bg-surface-container-lowest border-r border-neutral-medium-gray">
+<div class="px-4 mb-6">
+<div class="text-lg font-bold text-on-surface">DevBlog</div>
+<div class="text-sm text-outline">Creator Community</div>
+</div>
+<button class="w-full bg-primary-container hover:bg-primary-blue-dark text-on-primary h-[36px] rounded-lg shadow-sm hover:shadow-md transition-all font-body-standard mb-6">
+            New Post
+        </button>
+<nav class="flex-1 space-y-1">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 bg-neutral-off-white text-primary-container border-l-4 border-primary-container font-semibold rounded-r-lg font-nav-display" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+                Explore
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+                Bookmarks
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+                Series
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+</nav>
+<div class="mt-auto space-y-1 border-t border-neutral-medium-gray pt-4">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-off-white rounded-lg transition-all font-nav-display" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-sidebar-width flex justify-center py-lg px-md md:px-lg">
+<div class="w-full max-w-[800px] flex gap-lg relative">
+<!-- Sticky Left Action Bar (Desktop) -->
+<div class="hidden md:flex flex-col gap-4 sticky top-xl h-fit">
+<button class="w-12 h-12 rounded-full border border-neutral-medium-gray bg-surface-container-lowest flex flex-col items-center justify-center text-outline hover:border-accent-blue-light hover:text-primary-container transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">thumb_up</span>
+<span class="font-label-caption text-[10px] mt-1">42</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-neutral-medium-gray bg-surface-container-lowest flex flex-col items-center justify-center text-outline hover:border-accent-blue-light hover:text-primary-container transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">chat_bubble</span>
+<span class="font-label-caption text-[10px] mt-1">8</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-neutral-medium-gray bg-surface-container-lowest flex items-center justify-center text-outline hover:border-accent-blue-light hover:text-primary-container transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">bookmark</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-neutral-medium-gray bg-surface-container-lowest flex items-center justify-center text-outline hover:border-accent-blue-light hover:text-primary-container transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">share</span>
+</button>
+</div>
+<!-- Article Content -->
+<article class="flex-1 max-w-[680px]">
+<!-- Breadcrumb & Tags -->
+<div class="mb-6">
+<div class="flex items-center gap-2 text-outline font-label-caption mb-4">
+<a class="hover:text-primary-container" href="#">Home</a>
+<span>/</span>
+<a class="hover:text-primary-container" href="#">DSA</a>
+<span>/</span>
+<span class="text-on-surface">Understanding Binary Search Trees</span>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-neutral-off-white text-primary-container border border-primary-fixed rounded-full font-label-caption">DSA</span>
+<span class="px-3 py-1 bg-neutral-off-white text-primary-container border border-primary-fixed rounded-full font-label-caption">Algorithm</span>
+<span class="px-3 py-1 bg-neutral-off-white text-primary-container border border-primary-fixed rounded-full font-label-caption">Data Structures</span>
+</div>
+</div>
+<!-- Header -->
+<header class="mb-8">
+<h1 class="font-h1-display text-[32px] leading-[40px] text-on-surface mb-6">Understanding Binary Search Trees</h1>
+<div class="flex items-center justify-between bg-surface-container-lowest p-4 rounded-xl border border-neutral-medium-gray shadow-sm">
+<div class="flex items-center gap-3">
+<img alt="Nguyen Van A" class="w-10 h-10 rounded-full border border-neutral-medium-gray" data-alt="A portrait of an Asian male software engineer in his late 20s, wearing glasses and a casual navy t-shirt. The background is a slightly blurred modern office space with bright, natural lighting reflecting the clean, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYi1UeUcoVIyAlVDR2aTAcqIbeDLUXcC5VULN6IF6Am_bsav_x44TN0DrXC_bVJFY69GV-LrrLFSdRzfx0ycMxX6uSMJ6VemTDYz3R_1qzbkRTTW-Mo7kj58I0cELyjr8YhIXTcGGg712mMIHJIF2g-xTFiq7uQR07TY6qkS2RpedCexA_9ZN-fLCyJUngQj_gz42pxpLSVKQ2H-98o4MmtbxPru6-qIr3Bv13CJ7C1uRgabkqWxtmB_Tsnviyk3atQUQ4C4jX9FU"/>
+<div>
+<div class="font-body-standard text-on-surface">Nguyen Van A</div>
+<div class="font-label-caption text-outline">Jan 15, 2025 • 5 min read</div>
+</div>
+</div>
+<button class="bg-surface-container-lowest border border-neutral-medium-gray text-primary-container px-4 py-1.5 rounded-lg font-body-standard hover:bg-neutral-off-white transition-colors">
+                            Follow
+                        </button>
+</div>
+</header>
+<!-- Cover Image -->
+<figure class="mb-8 rounded-[14px] overflow-hidden border border-neutral-medium-gray shadow-sm">
+<img alt="Code structure abstract" class="w-full h-auto object-cover aspect-[680/360]" data-alt="A high-resolution, conceptual illustration representing a binary search tree data structure. It features glowing blue nodes connected by precise, thin lines against a very light, almost white background (#f9f9f9). The style is highly technical, minimalist, and modern, aligning with a corporate technical design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpsqVu8myC7kuUekCK3NMz5Mm1YNIjNhUz2FqrFQFpRPe62erCso1M9h0ZkRlD3kyLB9H4gkVGXyJXU74Zbz2j8Ajy1g0KdXe9_5hwtTkETKDXrosSqH6tQT5XwKxHPSI-l36eVsKcLyccNGazLLjo_cxCVVI15CBrDJEYZM7vv1lcPiUqtShNDdZUJmEGDz6KwcG5oVpdNF_Ur2hcuMXmhTXC4l2cMS6vJwUBow6OMaKCFU09f7CWuA-FKIHZkpuvmP6rIoRkV7A"/>
+</figure>
+<!-- Body -->
+<div class="prose prose-sm max-w-none font-body-regular text-on-surface leading-[1.75] mb-12">
+<p class="mb-4">A Binary Search Tree (BST) is a fundamental data structure in computer science. It allows for fast lookup, addition, and removal of items, and can be used to implement either dynamic sets of items, or lookup tables that allow finding an item by its key.</p>
+<h2 class="font-h2-heading text-on-surface mt-8 mb-4">Core Properties</h2>
+<p class="mb-4">The key property that makes a BST useful is its ordering principle:</p>
+<ul class="list-disc pl-6 mb-6 space-y-2 text-on-surface-variant">
+<li>The left subtree of a node contains only nodes with keys lesser than the node's key.</li>
+<li>The right subtree of a node contains only nodes with keys greater than the node's key.</li>
+<li>The left and right subtree each must also be a binary search tree.</li>
+</ul>
+<div class="bg-neutral-off-white border-l-4 border-primary-container p-4 rounded-r-lg mb-6 shadow-sm overflow-x-auto">
+<pre class="font-mono text-[13px] text-on-surface-variant"><code>class Node {
+    int key;
+    Node left, right;
+
+    public Node(int item) {
+        key = item;
+        left = right = null;
+    }
+}</code></pre>
+</div>
+<p class="mb-4">This recursive definition ensures that performing an in-order traversal of the tree will yield the elements in sorted order.</p>
+</div>
+<!-- Bottom Actions (Mobile Only) -->
+<div class="flex md:hidden justify-center gap-4 mb-12 border-t border-neutral-medium-gray pt-6">
+<button class="flex items-center gap-2 text-outline hover:text-primary-container font-label-caption"><span class="material-symbols-outlined">thumb_up</span> 42</button>
+<button class="flex items-center gap-2 text-outline hover:text-primary-container font-label-caption"><span class="material-symbols-outlined">chat_bubble</span> 8</button>
+<button class="flex items-center gap-2 text-outline hover:text-primary-container font-label-caption"><span class="material-symbols-outlined">bookmark</span></button>
+<button class="flex items-center gap-2 text-outline hover:text-primary-container font-label-caption"><span class="material-symbols-outlined">share</span></button>
+</div>
+</article>
+</div>
+</main>
+</body></html>

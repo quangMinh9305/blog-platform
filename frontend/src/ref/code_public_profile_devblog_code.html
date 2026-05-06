@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nguyen Van A - DevBlog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1b1b",
+                        "on-primary-container": "#d2d9ff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "neutral-light-gray": "#F4F4F5",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#1d52de",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-primary-fixed": "#001550",
+                        "secondary-fixed-dim": "#c2c7cd",
+                        "on-secondary-fixed-variant": "#42474c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed": "#171c20",
+                        "outline": "#747686",
+                        "primary-fixed": "#dce1ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed": "#380d00",
+                        "danger-red": "#F2706E",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-primary": "#b6c4ff",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1b1b",
+                        "neutral-medium-gray": "#EEEEEE",
+                        "accent-blue-light": "#8FB6FF",
+                        "surface-container": "#eeeeee",
+                        "on-tertiary-fixed-variant": "#822800",
+                        "on-tertiary-container": "#ffd1c1",
+                        "secondary-fixed": "#dfe3e9",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dce0e6",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#5e6368",
+                        "surface-tint": "#1b51dd",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "neutral-off-white": "#F5F9FF",
+                        "surface": "#f9f9f9",
+                        "on-primary-fixed-variant": "#003ab3",
+                        "primary-blue-dark": "#0F3BB7",
+                        "on-error-container": "#93000a",
+                        "success-green": "#399E43",
+                        "neutral-dark-gray": "#27272A",
+                        "neutral-charcoal": "#18181B",
+                        "error-red": "#DB4241",
+                        "outline-variant": "#c4c5d7",
+                        "secondary": "#5a5f64",
+                        "primary-blue-darker": "#092B89",
+                        "inverse-surface": "#303030",
+                        "surface-tertiary": "#F3FBF6",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#ac3800",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary": "#842900",
+                        "primary": "#003bb5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "sidebar-width": "248px",
+                        "md": "16px",
+                        "base": "4px",
+                        "layout-max": "1088px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "h1-display": ["manrope"],
+                        "label-caption": ["workSans"],
+                        "h2-heading": ["manrope"],
+                        "body-standard": ["workSans"],
+                        "nav-display": ["workSans"],
+                        "link-standalone": ["workSans"],
+                        "body-regular": ["workSans"]
+                    },
+                    "fontSize": {
+                        "h1-display": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "label-caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "h2-heading": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "body-standard": ["14px", { "lineHeight": "19.25px", "fontWeight": "500" }],
+                        "nav-display": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "link-standalone": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-regular": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-regular antialiased">
+<!-- TopNavBar (Mobile only) -->
+<nav class="md:hidden sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm flex items-center justify-between px-6 h-16 max-w-[1088px] mx-auto">
+<div class="flex items-center gap-2">
+<span class="font-h2-heading text-h2-heading text-primary-container tracking-tight">DevBlog</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-neutral-medium-gray" data-alt="A small circular profile picture of a diverse user avatar against a clean, light mode background. The image is a crisp, professional headshot with soft, even lighting, conveying a welcoming and friendly community tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY4UcD2sSymS3CO1x_s8BOFni77uMHDYKM0mtFZNoiDdlEs9_-8go4AZ4r2KRzNXdP8AmByNttlJPk1-Tj0yg78XD44xxJI9_p8YT6LCDyp0dJzrt7D9eN4QUYJPv8Bg8MD0P9P6NDjn6dOdj9nTDj5GzqPJ9NFGgDvejnjq6aDUUn95EfWSdSpslViMbkqBj7jNi183m-quGkbBFJeePoQCWX6Mb7u9bqARg6F-4CpnbBO8C4652iUKKgongsIcnUimrR3xm-Z7I"/>
+</div>
+</nav>
+<div class="flex max-w-[1088px] mx-auto w-full min-h-screen">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-[248px] overflow-y-auto bg-white border-r border-gray-100 flex-col py-6 px-4 space-y-2 z-40">
+<div class="mb-8 px-4">
+<h1 class="text-lg font-bold text-gray-900 tracking-tight flex items-center gap-2">
+<span class="w-8 h-8 rounded-lg bg-primary-container text-white flex items-center justify-center font-black">D</span>
+                    DevBlog
+                </h1>
+<p class="font-label-caption text-label-caption text-on-surface-variant mt-1">Creator Community</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                    Home
+                </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 bg-blue-50 text-blue-600 border-l-4 border-blue-600 font-semibold rounded-r-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+                    Explore
+                </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                    Bookmarks
+                </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+                    Series
+                </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                    Analytics
+                </a>
+</nav>
+<div class="mt-auto space-y-1 pt-6 border-t border-neutral-light-gray">
+<button class="w-full bg-[#1D52DE] hover:bg-[#0F3BB7] text-white h-[36px] rounded-[8px] font-body-standard text-body-standard transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    New Post
+                </button>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 hover:bg-gray-50 rounded-lg transition-all font-nav-display text-nav-display" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full md:ml-[248px] p-md md:p-lg lg:p-xxl flex justify-center">
+<div class="w-full max-w-[860px] space-y-lg">
+<!-- Profile Header Card -->
+<div class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-[20px] md:p-lg hover:border-accent-blue-light transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[120px] bg-gradient-to-r from-primary-fixed to-primary-container opacity-20"></div>
+<div class="relative z-10 pt-[60px] flex flex-col md:flex-row gap-lg items-start md:items-end">
+<div class="relative">
+<img alt="Nguyen Van A profile" class="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full border-4 border-surface-container-lowest shadow-sm object-cover bg-neutral-light-gray" data-alt="A highly detailed portrait photography of an Asian male professional, smiling slightly, wearing a neat casual shirt. The lighting is soft and natural, emphasizing approachability and technical expertise, set against a blurred, bright minimalist modern office background in a clean, high-key corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQiHsvk4yc604qCZJFBPU6aPRJQIIkJdO-JSPJeABemxMIdQZ4bYtwc5NVlgu31fQkQqF8GSXYj5QE_3giZNmSst2VxWxGv9KMFEveetAHKt0Lo6LEZKUVn99-2OBN7omMlrvdXMkpbRvfWE5cxuvA_AqcBbwv3pjIcc_AEQvqe8dbbmSAR0nEnEh3Mst_tdtBltDxTVb0l4XUxZi5gyL_UUS0kkkfiKmXrhPkWSmWZXkwqi5z8-PcZBI4GS5oTJWW0BYNcFVRsa0"/>
+</div>
+<div class="flex-1">
+<h1 class="font-h1-display text-h1-display text-on-surface">Nguyen Van A</h1>
+<p class="font-body-standard text-body-standard text-on-surface-variant mt-1">@nguyen_dev</p>
+<p class="font-body-regular text-body-regular text-on-secondary-container mt-xs max-w-2xl leading-relaxed">
+                                Senior Frontend Engineer &amp; UI/UX enthusiast. Building fast, accessible, and beautiful web experiences. Passionate about design systems and open source.
+                            </p>
+<div class="flex flex-wrap gap-md mt-sm items-center">
+<div class="flex gap-1 items-baseline">
+<span class="font-h2-heading text-[16px] font-bold text-on-surface">24</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">Posts</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-secondary-fixed-dim"></div>
+<div class="flex gap-1 items-baseline">
+<span class="font-h2-heading text-[16px] font-bold text-on-surface">1.2k</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">Followers</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-secondary-fixed-dim"></div>
+<div class="flex gap-1 items-baseline">
+<span class="font-h2-heading text-[16px] font-bold text-on-surface">48</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">Following</span>
+</div>
+</div>
+</div>
+<div class="mt-sm md:mt-0 w-full md:w-auto">
+<button class="w-full md:w-auto px-lg bg-[#1D52DE] hover:bg-[#0F3BB7] text-white h-[36px] rounded-[8px] font-body-standard text-body-standard transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+                                Follow
+                            </button>
+</div>
+</div>
+</div>
+<!-- Profile Tabs -->
+<div class="border-b border-neutral-medium-gray flex gap-lg">
+<button class="pb-xs font-nav-display text-nav-display text-primary-container border-b-2 border-primary-container relative">
+                        Posts (24)
+                    </button>
+<button class="pb-xs font-nav-display text-nav-display text-on-surface-variant hover:text-on-surface transition-colors">
+                        About
+                    </button>
+</div>
+<!-- Content Grid (Posts) -->
+<div class="grid grid-cols-1 gap-md md:gap-lg">
+<!-- Post Card 1 -->
+<article class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-[20px] hover:border-accent-blue-light transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] flex flex-col md:flex-row gap-lg">
+<div class="flex-1 space-y-sm">
+<div class="flex items-center gap-xs">
+<span class="bg-surface-tertiary text-success-green font-label-caption text-label-caption px-2 py-1 rounded-[6px]">Frontend</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">• Oct 12</span>
+</div>
+<h2 class="font-h2-heading text-h2-heading text-on-surface hover:text-primary-container cursor-pointer transition-colors">Mastering React Server Components in Next.js 14</h2>
+<p class="font-body-regular text-body-regular text-on-secondary-container line-clamp-2">
+                                A deep dive into how RSCs change the paradigm of web development. We'll explore data fetching, streaming UI, and optimizing payload size for maximum performance.
+                            </p>
+<div class="flex items-center gap-4 pt-sm">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="favorite">favorite</span> 142
+                                </button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span> 28
+                                </button>
+<button class="ml-auto text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark_add">bookmark_add</span>
+</button>
+</div>
+</div>
+<div class="w-full md:w-[240px] h-[160px] md:h-auto rounded-[8px] overflow-hidden shrink-0 hidden sm:block">
+<img alt="React Code background" class="w-full h-full object-cover" data-alt="A clean, conceptual digital illustration representing React programming code floating abstractly. The visual relies on a bright, minimalist modern light-mode palette with subtle glowing blue and cyan syntax highlighting against a soft white background. The aesthetic is highly technical, polished, and corporate modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbxzcZ-WH8TtmCnFiEpb9SwegvB7Aq4RhhVO2QugskdzlRphlr1HvUimO9COHXRRnvIEJ39bVtEurV-LU3KO_2wAYUW2M6YnYA3YVRAoyEq1WoGBAfyzEC_mbySo0gojPBCTL3RO6EnU9-dn-f0yZFWptAXousP-ymQ3dljodyA1tdtV6HMdqE7ZgYq3sGcOafTjERrJNKLzQ27cB1_nZheFyJPL1C_L4xlTNulQ8b2xb0IIiKjhL30Qi4DQI6DbX3TgR9Z9vnaJU"/>
+</div>
+</article>
+<!-- Post Card 2 -->
+<article class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-[20px] hover:border-accent-blue-light transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] flex flex-col md:flex-row gap-lg">
+<div class="flex-1 space-y-sm">
+<div class="flex items-center gap-xs">
+<span class="bg-primary-fixed-dim/20 text-primary-container font-label-caption text-label-caption px-2 py-1 rounded-[6px]">Design Systems</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">• Sep 28</span>
+</div>
+<h2 class="font-h2-heading text-h2-heading text-on-surface hover:text-primary-container cursor-pointer transition-colors">Building Semantic Color Palettes with Tailwind CSS</h2>
+<p class="font-body-regular text-body-regular text-on-secondary-container line-clamp-2">
+                                Stop using hex codes everywhere. Learn how to construct a scalable, themeable, and accessible color hierarchy using CSS variables and Tailwind configuration.
+                            </p>
+<div class="flex items-center gap-4 pt-sm">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="favorite">favorite</span> 89
+                                </button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span> 12
+                                </button>
+<button class="ml-auto text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark_add">bookmark_add</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Post Card 3 -->
+<article class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-[20px] hover:border-accent-blue-light transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] flex flex-col md:flex-row gap-lg">
+<div class="flex-1 space-y-sm">
+<div class="flex items-center gap-xs">
+<span class="bg-error-container/30 text-error-red font-label-caption text-label-caption px-2 py-1 rounded-[6px]">Career</span>
+<span class="font-label-caption text-label-caption text-on-surface-variant">• Aug 15</span>
+</div>
+<h2 class="font-h2-heading text-h2-heading text-on-surface hover:text-primary-container cursor-pointer transition-colors">The Architect Mindset: Moving beyond Senior Developer</h2>
+<p class="font-body-regular text-body-regular text-on-secondary-container line-clamp-2">
+                                Technical skills got you here, but systems thinking will take you further. A guide to shifting your perspective from feature delivery to cross-functional impact.
+                            </p>
+<div class="flex items-center gap-4 pt-sm">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="favorite">favorite</span> 312
+                                </button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary-container font-label-caption text-label-caption transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span> 54
+                                </button>
+<button class="ml-auto text-on-surface-variant hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark_add">bookmark_add</span>
+</button>
+</div>
+</div>
+<div class="w-full md:w-[240px] h-[160px] md:h-auto rounded-[8px] overflow-hidden shrink-0 hidden sm:block">
+<img alt="Team collaboration" class="w-full h-full object-cover" data-alt="A bright, professional photograph of diverse tech professionals collaborating around a modern wooden table in a well-lit, minimalist startup office. The scene exudes a clean, corporate modern aesthetic with ample white space, soft natural daylight, and a focus on positive team interaction and structural organization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvlcXMt_xTOz5KOl8HSn5GIrXq6DxB-lh6LigBtm29gOrQDJD4PaAq_V86k_JbzwudEDu4Q3MGpd6sWievUZo9z4BCrc8GmOG0AMMEZOwv51EhhuVlwJ6KgBrC4kKeLS2qi0QVXChek8fXVYwZfG1mrnqcZF3lvf-eDEAE1sDJHkRxAprBsAfAwipEBSvMQ8sjCZcEZtdaie-hC9l0FMuJDXaBz0GzdfJBUCFPdNdpr80F4CMO1Bax2ROZMryMu8nnqJjLcpQqFKQ"/>
+</div>
+</article>
+</div>
+</div>
+</main>
+</div>
+</body></html>

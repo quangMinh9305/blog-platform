@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevBlog - Edit Profile Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1b1b",
+                        "on-primary-container": "#d2d9ff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "neutral-light-gray": "#F4F4F5",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#1d52de",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-primary-fixed": "#001550",
+                        "secondary-fixed-dim": "#c2c7cd",
+                        "on-secondary-fixed-variant": "#42474c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed": "#171c20",
+                        "outline": "#747686",
+                        "primary-fixed": "#dce1ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed": "#380d00",
+                        "danger-red": "#F2706E",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-primary": "#b6c4ff",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1b1b",
+                        "neutral-medium-gray": "#EEEEEE",
+                        "accent-blue-light": "#8FB6FF",
+                        "surface-container": "#eeeeee",
+                        "on-tertiary-fixed-variant": "#822800",
+                        "on-tertiary-container": "#ffd1c1",
+                        "secondary-fixed": "#dfe3e9",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dce0e6",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#5e6368",
+                        "surface-tint": "#1b51dd",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "neutral-off-white": "#F5F9FF",
+                        "surface": "#f9f9f9",
+                        "on-primary-fixed-variant": "#003ab3",
+                        "primary-blue-dark": "#0F3BB7",
+                        "on-error-container": "#93000a",
+                        "success-green": "#399E43",
+                        "neutral-dark-gray": "#27272A",
+                        "neutral-charcoal": "#18181B",
+                        "error-red": "#DB4241",
+                        "outline-variant": "#c4c5d7",
+                        "secondary": "#5a5f64",
+                        "primary-blue-darker": "#092B89",
+                        "inverse-surface": "#303030",
+                        "surface-tertiary": "#F3FBF6",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#ac3800",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary": "#842900",
+                        "primary": "#003bb5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "sidebar-width": "248px",
+                        "md": "16px",
+                        "base": "4px",
+                        "layout-max": "1088px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "h1-display": ["manrope"],
+                        "label-caption": ["workSans"],
+                        "h2-heading": ["manrope"],
+                        "body-standard": ["workSans"],
+                        "nav-display": ["workSans"],
+                        "link-standalone": ["workSans"],
+                        "body-regular": ["workSans"]
+                    },
+                    "fontSize": {
+                        "h1-display": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "label-caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "h2-heading": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "body-standard": ["14px", { "lineHeight": "19.25px", "fontWeight": "500" }],
+                        "nav-display": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "link-standalone": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-regular": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-regular antialiased">
+<!-- TopNavBar -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md sticky top-0 w-full z-50 border-b border-gray-200 dark:border-gray-800 shadow-sm flex items-center justify-between px-6 h-16 max-w-[1088px] mx-auto hidden md:flex">
+<div class="flex items-center gap-6">
+<a class="text-xl font-black tracking-tight text-blue-600 dark:text-blue-500" href="#">DevBlog</a>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 rounded-full border border-neutral-medium-gray bg-surface-container-lowest focus:border-accent-blue-light focus:ring-2 focus:ring-accent-blue-light/20 outline-none text-body-standard font-body-standard w-64" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-1 font-manrope text-sm font-medium">
+<a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors active:scale-95 transition-transform" href="#">Feed</a>
+<a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors active:scale-95 transition-transform" href="#">Discussions</a>
+<a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors active:scale-95 transition-transform" href="#">Hackathons</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-gray-600 hover:text-blue-600 p-2 rounded-full hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-primary-fixed bg-primary-fixed px-4 py-1.5 rounded-lg text-body-standard font-body-standard hover:bg-primary-fixed-dim transition-colors">Log In</button>
+<button class="bg-primary-container text-on-primary px-4 py-1.5 rounded-lg text-body-standard font-body-standard hover:bg-primary-blue-dark transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)]">Write</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-neutral-medium-gray object-cover cursor-pointer" data-alt="A close-up portrait of a professional developer in a bright, modern office space. The lighting is soft and natural, creating a clean and welcoming aesthetic. The individual has a confident yet approachable expression, fitting for a modern tech creator platform. The image uses a high-key visual style aligned with a light-mode corporate modern design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0EKFEpbEfLDb27uOjn1eq8573SLzYHkdvy3ktbtWFtYyhUD41TUm8UYCqe_9a6HkHoo78xygbkv22DBycaz1QGnCvlF6jOiurCX-1fmRfGXNDeUI4K8sjnicWwETAhia_cOOo-W74pTd7cOCiswoz8jFhRkxWasJyxbj13snMXOnRm_5E3bAMoc9GU0KRKIWhYq3Ca69XxRgWJQOOix31hG_L71PGms-q87L_lFOzSkDm97QkA5u6fOY6Fym5YPVOd3iv21EOHYw"/>
+</div>
+</header>
+<div class="flex max-w-layout-max mx-auto w-full">
+<!-- SideNavBar -->
+<aside class="bg-white dark:bg-slate-900 fixed left-0 top-0 h-full w-[248px] overflow-y-auto border-r border-gray-100 dark:border-gray-800 hidden lg:flex flex-col py-6 px-4 space-y-2">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center font-bold text-lg">D</div>
+<div>
+<h2 class="text-lg font-bold text-gray-900 dark:text-white leading-tight">DevBlog</h2>
+<p class="text-xs text-outline">Creator Community</p>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary w-full py-2.5 rounded-lg font-body-standard text-body-standard mb-6 shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)] hover:bg-primary-blue-dark transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Post
+            </button>
+<nav class="flex-1 space-y-1 font-manrope text-[14px]">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span>Explore</span>
+</a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span>Bookmarks</span>
+</a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span>Series</span>
+</a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Analytics</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-neutral-medium-gray space-y-1 font-manrope text-[14px]">
+<a class="px-4 py-2 my-1 flex items-center gap-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 font-semibold rounded-r-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full lg:ml-[248px] px-md py-lg md:px-xxl md:py-xxl max-w-[680px] mx-auto">
+<div class="mb-lg">
+<h1 class="font-h1-display text-h1-display text-on-surface mb-xs">Profile Settings</h1>
+<p class="font-body-regular text-body-regular text-on-surface-variant">Manage your DevBlog identity and security preferences.</p>
+</div>
+<div class="space-y-lg">
+<!-- Avatar Section -->
+<section class="bg-surface-container-lowest border border-neutral-medium-gray rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:border-accent-blue-light transition-colors duration-200">
+<h2 class="font-h2-heading text-h2-heading text-on-surface mb-md">Avatar</h2>
+<div class="flex items-center gap-lg">
+<div class="relative w-[80px] h-[80px] rounded-full group cursor-pointer overflow-hidden border-2 border-neutral-medium-gray hover:border-accent-blue-light transition-colors">
+<img alt="Current avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional developer in a bright, modern office space. The lighting is soft and natural, creating a clean and welcoming aesthetic. The individual has a confident yet approachable expression, fitting for a modern tech creator platform. The image uses a high-key visual style aligned with a light-mode corporate modern design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUi487MaMBvFL6hZ7GPsFfqLSTpcuaaMExUVOYiUZT0SvDY0oeBgw4uNB9XPnfecqiDHNgNeEaBqnKrGa2-0CNouF3BbubtJefCWWlnhaYxg_gSxKZ9N8dghhgmq1xGnVkVvBIstLy3CahsAgNSdSJ9Tp_vIX0cduunhdYGur5MlBXTjaJGxhpSL-tJLn6_uuT1cfQYce9eW93UqxcYQ5--yAe2B6d4wRbdDrdz57wg_2EB034Pv7Vlu5aEYbPzsINpD9z2dmP7f0"/>
+<div class="absolute inset-0 bg-neutral-charcoal/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+</div>
+<div class="flex flex-col items-start gap-sm">
+<button class="h-[36px] px-md bg-white border border-neutral-medium-gray text-primary-container rounded-lg font-body-standard text-body-standard hover:bg-neutral-off-white transition-colors">Upload new picture</button>
+<button class="text-on-surface bg-transparent hover:bg-primary-fixed/10 px-md py-1.5 rounded-lg font-body-standard text-body-standard transition-colors">Remove avatar</button>
+</div>
+</div>
+</section>
+<!-- Personal Info Section -->
+<section class="bg-surface-container-lowest border border-neutral-medium-gray rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:border-accent-blue-light transition-colors duration-200">
+<h2 class="font-h2-heading text-h2-heading text-on-surface mb-md">Personal Information</h2>
+<div class="space-y-md">
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Display Name</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow" type="text" value="Jane Doe"/>
+</div>
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Email Address</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-low text-on-surface-variant cursor-not-allowed outline-none font-body-regular text-body-regular" disabled="" type="email" value="jane.doe@example.com"/>
+<p class="font-label-caption text-label-caption text-outline mt-1">To change your email, please contact support.</p>
+</div>
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Nickname (Optional)</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow" placeholder="@janecodes" type="text"/>
+</div>
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Bio</label>
+<textarea class="w-full p-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow resize-y" placeholder="Tell the community about yourself..." rows="4"></textarea>
+</div>
+</div>
+<div class="mt-lg flex justify-end">
+<button class="h-[36px] px-lg bg-primary-container text-on-primary rounded-lg font-body-standard text-body-standard hover:bg-primary-blue-dark transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)]">Save Changes</button>
+</div>
+</section>
+<!-- Security Section -->
+<section class="bg-surface-container-lowest border border-neutral-medium-gray rounded-xl p-lg shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:border-accent-blue-light transition-colors duration-200">
+<h2 class="font-h2-heading text-h2-heading text-on-surface mb-md">Security</h2>
+<div class="space-y-md">
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Current Password</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow" type="password"/>
+</div>
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">New Password</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow" type="password"/>
+</div>
+<div>
+<label class="block font-body-standard text-body-standard text-on-surface-variant mb-xs">Confirm New Password</label>
+<input class="w-full h-[36px] px-sm border border-neutral-medium-gray rounded bg-surface-container-lowest focus:border-primary-container focus:ring-0 focus:shadow-[0_0_0_3px_rgba(29,82,222,0.1)] outline-none font-body-regular text-body-regular transition-shadow" type="password"/>
+</div>
+</div>
+<div class="mt-lg flex justify-end">
+<button class="h-[36px] px-lg bg-primary-container text-on-primary rounded-lg font-body-standard text-body-standard hover:bg-primary-blue-dark transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)]">Update Password</button>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

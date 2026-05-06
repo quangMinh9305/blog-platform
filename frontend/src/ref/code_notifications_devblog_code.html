@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevBlog - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1b1b1b",
+                        "on-primary-container": "#d2d9ff",
+                        "tertiary-fixed": "#ffdbcf",
+                        "surface-container-lowest": "#ffffff",
+                        "neutral-light-gray": "#F4F4F5",
+                        "inverse-on-surface": "#f1f1f1",
+                        "primary-container": "#1d52de",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "on-primary-fixed": "#001550",
+                        "secondary-fixed-dim": "#c2c7cd",
+                        "on-secondary-fixed-variant": "#42474c",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-fixed": "#171c20",
+                        "outline": "#747686",
+                        "primary-fixed": "#dce1ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-tertiary-fixed": "#380d00",
+                        "danger-red": "#F2706E",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-primary": "#b6c4ff",
+                        "on-surface-variant": "#434655",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1b1b1b",
+                        "neutral-medium-gray": "#EEEEEE",
+                        "accent-blue-light": "#8FB6FF",
+                        "surface-container": "#eeeeee",
+                        "on-tertiary-fixed-variant": "#822800",
+                        "on-tertiary-container": "#ffd1c1",
+                        "secondary-fixed": "#dfe3e9",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#dce0e6",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#5e6368",
+                        "surface-tint": "#1b51dd",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "neutral-off-white": "#F5F9FF",
+                        "surface": "#f9f9f9",
+                        "on-primary-fixed-variant": "#003ab3",
+                        "primary-blue-dark": "#0F3BB7",
+                        "on-error-container": "#93000a",
+                        "success-green": "#399E43",
+                        "neutral-dark-gray": "#27272A",
+                        "neutral-charcoal": "#18181B",
+                        "error-red": "#DB4241",
+                        "outline-variant": "#c4c5d7",
+                        "secondary": "#5a5f64",
+                        "primary-blue-darker": "#092B89",
+                        "inverse-surface": "#303030",
+                        "surface-tertiary": "#F3FBF6",
+                        "surface-dim": "#dadada",
+                        "tertiary-container": "#ac3800",
+                        "surface-container-high": "#e8e8e8",
+                        "background": "#f9f9f9",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary": "#842900",
+                        "primary": "#003bb5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "sidebar-width": "248px",
+                        "md": "16px",
+                        "base": "4px",
+                        "layout-max": "1088px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "h1-display": ["Manrope", "sans-serif"],
+                        "label-caption": ["Work Sans", "sans-serif"],
+                        "h2-heading": ["Manrope", "sans-serif"],
+                        "body-standard": ["Work Sans", "sans-serif"],
+                        "nav-display": ["Work Sans", "sans-serif"],
+                        "link-standalone": ["Work Sans", "sans-serif"],
+                        "body-regular": ["Work Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "h1-display": ["24px", {"lineHeight": "30px", "fontWeight": "700"}],
+                        "label-caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "h2-heading": ["16px", {"lineHeight": "22px", "fontWeight": "700"}],
+                        "body-standard": ["14px", {"lineHeight": "19.25px", "fontWeight": "500"}],
+                        "nav-display": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "link-standalone": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-regular": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-regular antialiased min-h-screen flex">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden lg:flex flex-col py-6 px-4 space-y-2 bg-white fixed left-0 top-0 h-full w-[248px] overflow-y-auto border-r border-neutral-medium-gray z-40">
+<div class="px-4 py-2 mb-4">
+<h1 class="font-h1-display text-h1-display text-neutral-charcoal">DevBlog</h1>
+<p class="font-label-caption text-label-caption text-on-surface-variant">Creator Community</p>
+</div>
+<button class="bg-primary-container hover:bg-primary-blue-dark text-on-primary font-nav-display text-nav-display rounded-lg h-[36px] px-4 flex items-center justify-center gap-2 w-full mb-6 transition-all shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_6px_rgba(0,0,0,0.15)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+            New Post
+        </button>
+<div class="flex flex-col gap-1 flex-grow">
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">explore</span>
+                Explore
+            </a>
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+                Bookmarks
+            </a>
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+                Series
+            </a>
+<!-- Adding Notifications to Sidebar as per prompt request "Sidebar: 'Notifications' active" -->
+<a class="bg-neutral-off-white text-primary-container border-l-[3px] border-primary-container font-nav-display text-nav-display rounded-r-lg px-4 py-2 my-1 flex items-center gap-3 transition-all font-semibold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+                Notifications
+            </a>
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+</div>
+<div class="flex flex-col gap-1 mt-auto pt-4 border-t border-neutral-medium-gray">
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="text-on-surface-variant hover:bg-neutral-light-gray rounded-lg px-4 py-2 my-1 flex items-center gap-3 font-nav-display text-nav-display transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-[248px] pt-6 px-4 md:px-8 pb-12 w-full max-w-[1088px] mx-auto">
+<!-- Content max-width 680px -->
+<div class="max-w-[680px] mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+<h2 class="font-h1-display text-h1-display text-neutral-charcoal">Notifications</h2>
+<button class="bg-transparent hover:bg-primary-container/10 text-on-surface font-body-standard text-body-standard h-[36px] px-4 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">done_all</span>
+                    Mark all as read
+                </button>
+</div>
+<!-- Tabs -->
+<div class="flex gap-6 border-b border-neutral-medium-gray mb-6">
+<button class="pb-3 border-b-2 border-primary-container text-primary-container font-nav-display text-nav-display">
+                    All
+                </button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-nav-display text-nav-display transition-colors flex items-center gap-2">
+                    Unread <span class="bg-primary-container text-on-primary text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+</button>
+</div>
+<!-- Notifications List -->
+<div class="flex flex-col gap-3">
+<!-- Unread Notification 1 (Like) -->
+<div class="bg-neutral-off-white border border-accent-blue-light/30 border-l-[3px] border-l-primary-container rounded-lg p-4 flex gap-4 items-start transition-shadow hover:shadow-[0_4px_6px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="relative shrink-0">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-neutral-medium-gray" data-alt="A close up portrait of a young professional woman with a soft smile, wearing a dark blazer over a light shirt. The background is a blurred modern office space with bright, natural lighting. The color palette is composed of soft whites, neutral grays, and a hint of warm beige, creating a clean, Corporate Modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIoK3rMEPJkN6zmAKFdR1_4qLxThvSyi2JDecyz-1iPIOIVJ69g7q559wjy_Zvs2eQdiZu3BYpdyqe_Tkcn0VlzU-xlCzRv6Q6MU4vvyzFn2TPGMHAzAzlxt0Wj6xN3O6ss3faZ8nddm7goaN4D22vWHAXlo0AFYfF0TNl_24HAe8ev_PcQ66Q_wueG3V3SYSv2xo049PvUm5if21FdAeQTcLMgwAxt5QmfM5mjVjDZjaZcRC2_01ZoAdmkeOK8JnTfD3f_iCSj_4"/>
+<div class="absolute -bottom-1 -right-1 bg-danger-red text-white rounded-full p-0.5 border-2 border-white flex items-center justify-center w-5 h-5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-body-regular text-body-regular text-on-surface">
+<span class="font-semibold text-neutral-charcoal">Tran Thi B</span> liked your comment on <span class="font-medium text-primary-blue-dark cursor-pointer hover:underline">"Building Scalable Design Systems"</span>
+</p>
+<p class="font-label-caption text-label-caption text-outline mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 10 mins ago
+                        </p>
+</div>
+</div>
+<!-- Unread Notification 2 (Follow) -->
+<div class="bg-neutral-off-white border border-accent-blue-light/30 border-l-[3px] border-l-primary-container rounded-lg p-4 flex gap-4 items-start transition-shadow hover:shadow-[0_4px_6px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="relative shrink-0">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-neutral-medium-gray" data-alt="A portrait of a male professional with short dark hair and glasses, wearing a casual light blue button-down shirt. The background is a simple, out-of-focus light gray wall. The lighting is soft and even, highlighting a friendly expression. The visual style aligns with a clean, modern corporate headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIKP-OS16LlK6jDJLiA5vmaB-n0QRg57zBnAGJGA3C9ek_GdYCpAChbGa_YIqxSkZz5NfmqUWN53JD_eer1X01EJzYdUQl3Tot4xm_0mhUnc-3ojY42RRMPiLAggz4DCFUNVFLoaYg_8lQFw0zvAl9DhVUiik4Q-dc7PtU6ockcye7PiyYqv03ziHyPeudStUSALThr_LVkn7Ae8TurSW0N1o5SkuqT9r7vA0ce6c4NnYpTEIJDrRVRspUzxYbjfdfZ8XqaJC129I"/>
+<div class="absolute -bottom-1 -right-1 bg-primary-container text-white rounded-full p-0.5 border-2 border-white flex items-center justify-center w-5 h-5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">person_add</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-body-regular text-body-regular text-on-surface">
+<span class="font-semibold text-neutral-charcoal">Le Van C</span> started following you.
+                        </p>
+<p class="font-label-caption text-label-caption text-outline mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 2 hours ago
+                        </p>
+</div>
+<button class="bg-white border border-neutral-medium-gray hover:bg-neutral-off-white text-primary-container font-body-standard text-body-standard px-3 py-1.5 rounded-md transition-colors text-sm shrink-0">
+                        Follow Back
+                    </button>
+</div>
+<!-- Unread Notification 3 (Comment) -->
+<div class="bg-neutral-off-white border border-accent-blue-light/30 border-l-[3px] border-l-primary-container rounded-lg p-4 flex gap-4 items-start transition-shadow hover:shadow-[0_4px_6px_rgba(0,0,0,0.05)] cursor-pointer">
+<div class="relative shrink-0">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-neutral-medium-gray" data-alt="A headshot of a woman with shoulder-length brown hair, smiling brightly. She is wearing a navy blue top. The background is softly blurred foliage, suggesting an outdoor setting but maintaining a professional tone. The image is bright, crisp, and fits within a minimalist, corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBn5DDpFup2Wy70Kgz2d1lx3CiS6A5X2SzJQfGqDMWxrfcaEDmGKsVsUFqft5tOCqvy2OBcIb4Z5A3Ud3dw1UE-oYhtRE3Tpa9hZN8_uvmkr7Lo_MxKAhXdLzA2hjW15zMkt0hp-pNmOWOUsVmdFYY2AwBIcHuY7Ftsq6VtyXoW7SA7Q9seFtFtnPTKotkUh0iEtD5i1n-MG-XBYqwD4Fcip4KsGFF59XJ0HZE1G2SDdq8Mgz8y9ewa4ydIDQ-zZPY0HY6SgcRXqe8"/>
+<div class="absolute -bottom-1 -right-1 bg-success-green text-white rounded-full p-0.5 border-2 border-white flex items-center justify-center w-5 h-5">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-body-regular text-body-regular text-on-surface">
+<span class="font-semibold text-neutral-charcoal">Nguyen Thi D</span> replied to your post <span class="font-medium text-primary-blue-dark cursor-pointer hover:underline">"React 19 Features Overview"</span>
+</p>
+<div class="mt-2 p-3 bg-white border border-neutral-medium-gray rounded-md text-sm text-on-surface-variant font-body-regular">
+                            "Great summary! I'm particularly excited about the new concurrent rendering features you mentioned."
+                        </div>
+<p class="font-label-caption text-label-caption text-outline mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 5 hours ago
+                        </p>
+</div>
+</div>
+<!-- Read Notification 1 -->
+<div class="bg-white border border-neutral-medium-gray rounded-lg p-4 flex gap-4 items-start transition-shadow hover:shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:border-accent-blue-light cursor-pointer">
+<div class="relative shrink-0 opacity-80">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-neutral-medium-gray flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+</div>
+<div class="flex-1 opacity-80">
+<p class="font-body-regular text-body-regular text-on-surface">
+<span class="font-semibold text-neutral-charcoal">System</span>: Your post <span class="font-medium text-on-surface cursor-pointer hover:underline">"CSS Grid Layouts"</span> reached 1,000 views! 🎉
+                        </p>
+<p class="font-label-caption text-label-caption text-outline mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Yesterday
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<div class="fixed bottom-0 w-full bg-white border-t border-neutral-medium-gray flex md:hidden items-center justify-around h-16 px-2 pb-safe z-50">
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary-container" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-nav-display mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary-container" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-nav-display mt-1">Explore</span>
+</a>
+<div class="flex flex-col items-center justify-center w-full h-full -mt-6">
+<button class="bg-primary-container text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary-container" href="#">
+<div class="relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-danger-red rounded-full"></span>
+</div>
+<span class="text-[10px] font-nav-display mt-1 font-semibold">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary-container" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-nav-display mt-1">Profile</span>
+</a>
+</div>
+</body></html>
