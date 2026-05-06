@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Posts - DevBlog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;900&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#dce1ff",
+                        "on-error-container": "#93000a",
+                        "error-red": "#DB4241",
+                        "outline-variant": "#c4c5d7",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "primary": "#003bb5",
+                        "surface-bright": "#f9f9f9",
+                        "success-green": "#399E43",
+                        "primary-blue-darker": "#092B89",
+                        "outline": "#747686",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed": "#ffdbcf",
+                        "inverse-on-surface": "#f1f1f1",
+                        "accent-blue-light": "#8FB6FF",
+                        "primary-container": "#1d52de",
+                        "surface-tint": "#1b51dd",
+                        "secondary-container": "#dce0e6",
+                        "danger-red": "#F2706E",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary-fixed-dim": "#c2c7cd",
+                        "neutral-charcoal": "#18181B",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b6c4ff",
+                        "surface-tertiary": "#F3FBF6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#42474c",
+                        "on-background": "#1b1b1b",
+                        "tertiary": "#842900",
+                        "neutral-off-white": "#F5F9FF",
+                        "tertiary-container": "#ac3800",
+                        "primary-blue-dark": "#0F3BB7",
+                        "on-secondary-fixed": "#171c20",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-dim": "#dadada",
+                        "on-tertiary-container": "#ffd1c1",
+                        "on-primary-fixed-variant": "#003ab3",
+                        "secondary-fixed": "#dfe3e9",
+                        "background": "#f9f9f9",
+                        "inverse-surface": "#303030",
+                        "on-surface": "#1b1b1b",
+                        "neutral-dark-gray": "#27272A",
+                        "on-secondary-container": "#5e6368",
+                        "on-primary-container": "#d2d9ff",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "secondary": "#5a5f64",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeee",
+                        "on-primary-fixed": "#001550",
+                        "neutral-medium-gray": "#EEEEEE",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#434655",
+                        "tertiary-fixed-dim": "#ffb59b",
+                        "neutral-light-gray": "#F4F4F5",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#380d00",
+                        "on-tertiary-fixed-variant": "#822800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "8px",
+                        "xxl": "48px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "base": "4px",
+                        "sm": "12px",
+                        "sidebar-width": "248px",
+                        "layout-max": "1088px"
+                    },
+                    "fontFamily": {
+                        "link-standalone": ["workSans"],
+                        "h1-display": ["manrope"],
+                        "body-regular": ["workSans"],
+                        "h2-heading": ["manrope"],
+                        "body-standard": ["workSans"],
+                        "nav-display": ["workSans"],
+                        "label-caption": ["workSans"]
+                    },
+                    "fontSize": {
+                        "link-standalone": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "h1-display": ["24px", { "lineHeight": "30px", "fontWeight": "700" }],
+                        "body-regular": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h2-heading": ["16px", { "lineHeight": "22px", "fontWeight": "700" }],
+                        "body-standard": ["14px", { "lineHeight": "19.25px", "fontWeight": "500" }],
+                        "nav-display": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "label-caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-regular min-h-screen flex flex-col md:flex-row antialiased">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col py-6 px-4 space-y-2 bg-white dark:bg-slate-900 border-r border-gray-100 dark:border-gray-800 fixed left-0 top-0 h-full w-[248px] overflow-y-auto z-40">
+<div class="mb-lg px-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold">D</div>
+<div>
+<h1 class="font-h2-heading text-h2-heading text-gray-900 dark:text-white text-lg font-bold">DevBlog</h1>
+<p class="font-label-caption text-label-caption text-on-surface-variant">Creator Community</p>
+</div>
+</div>
+<button class="w-full mb-lg h-[36px] bg-primary-container text-on-primary rounded-lg font-body-standard text-body-standard flex items-center justify-center gap-2 hover:bg-primary-blue-dark transition-colors shadow-sm">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+            New Post
+        </button>
+<div class="flex-1 space-y-1">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                Home
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+                Explore
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 font-semibold rounded-r-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="edit_document">edit_document</span>
+                My Posts
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+                Bookmarks
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                Analytics
+            </a>
+</div>
+<div class="mt-auto space-y-1 border-t border-gray-100 pt-4">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-900/10 transition-all font-manrope text-[14px]" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-[248px] w-full max-w-[1088px] mx-auto p-md md:p-xl lg:p-xxl">
+<!-- Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-xl">
+<div>
+<h2 class="font-h1-display text-h1-display text-on-surface">My Posts</h2>
+<p class="font-body-regular text-body-regular text-on-surface-variant mt-1">Manage and track the performance of your articles.</p>
+</div>
+<button class="h-[36px] px-lg bg-primary-container text-on-primary rounded-lg font-body-standard text-body-standard hover:bg-primary-blue-dark transition-colors shadow-[0px_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0px_4px_6px_rgba(0,0,0,0.15)] flex items-center justify-center gap-2 w-full sm:w-auto">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                New Post
+            </button>
+</div>
+<!-- Tabs -->
+<div class="border-b border-surface-variant mb-lg flex overflow-x-auto hide-scrollbar">
+<button class="font-nav-display text-nav-display text-on-surface-variant hover:text-primary-container px-4 py-3 border-b-2 border-transparent whitespace-nowrap transition-colors">
+                All (12)
+            </button>
+<button class="font-nav-display text-nav-display text-primary-container px-4 py-3 border-b-2 border-primary-container whitespace-nowrap transition-colors">
+                Published (8)
+            </button>
+<button class="font-nav-display text-nav-display text-on-surface-variant hover:text-primary-container px-4 py-3 border-b-2 border-transparent whitespace-nowrap transition-colors">
+                Draft (3)
+            </button>
+<button class="font-nav-display text-nav-display text-on-surface-variant hover:text-primary-container px-4 py-3 border-b-2 border-transparent whitespace-nowrap transition-colors">
+                Archived (1)
+            </button>
+</div>
+<!-- Data Table Card -->
+<div class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-lg shadow-[0px_1px_3px_rgba(0,0,0,0.1)] hover:border-accent-blue-light transition-colors overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant">
+<th class="p-4 w-12">
+<input class="w-4 h-4 rounded-[3px] border-outline text-primary-container focus:ring-primary-container focus:ring-offset-0" type="checkbox"/>
+</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium">Title</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium">Status</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium hidden sm:table-cell">Views</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium hidden md:table-cell">Engagement</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium hidden lg:table-cell">Date</th>
+<th class="p-4 font-body-standard text-body-standard text-on-surface-variant font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-regular text-body-regular text-on-surface">
+<!-- Row 1: Published -->
+<tr class="border-b border-surface-variant hover:bg-neutral-off-white transition-colors group">
+<td class="p-4">
+<input class="w-4 h-4 rounded-[3px] border-outline text-primary-container focus:ring-primary-container focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="A macro shot of lines of code on a computer monitor with a dark theme. The syntax highlighting is vibrant with bright greens, blues, and oranges against a deep charcoal background. The lighting is low and focused on the screen, emphasizing the technical, developer-centric environment. The aesthetic is modern, analytical, and professional, aligning with a corporate technology platform." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTcCKxKOe2hfUItOwkvsHafQ4-fK8LpBus2s3G3OR5ysr7fmVDsQXKe4yJP-oxU1HvMqTnht3QS0kKW8v_Q5dVUVW7MKObjTduTMmlBrtnvAUgOM-R5yNulD0y9m2Q4P93p5tNy8nFMGnSbsr3jHxUjbTTZZMZFLWaAJIdV_uie7FoZjZCxz0RjMrLeQv3WA3MLadyqJ708mSFeKR2hUg4H613jG4vHGzIlBj_WZ2iHiEyrhJ9P8DT5hVI8MTwvW4bgydB0qy_8F4');"></div>
+<span class="font-h2-heading text-h2-heading">Understanding BST</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-[6px] bg-surface-tertiary text-success-green font-label-caption text-label-caption font-medium border border-success-green/20">
+                                    Published
+                                </span>
+</td>
+<td class="p-4 hidden sm:table-cell">1,240</td>
+<td class="p-4 hidden md:table-cell">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="thumb_up">thumb_up</span> 42</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span> 8</span>
+</div>
+</td>
+<td class="p-4 hidden lg:table-cell text-on-surface-variant">Jan 15, 2025</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="View">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Published -->
+<tr class="border-b border-surface-variant hover:bg-neutral-off-white transition-colors group">
+<td class="p-4">
+<input class="w-4 h-4 rounded-[3px] border-outline text-primary-container focus:ring-primary-container focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high flex-shrink-0 bg-cover bg-center" data-alt="A wide angle view of an abstract digital network or architecture, featuring connecting lines and glowing nodes over a deep blue background. The aesthetic represents complex systems and structure, conveying a sense of scale and modern technological infrastructure. The lighting is high-contrast, highlighting the intricate connections. This aligns perfectly with a corporate modern, technical style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqj0sTpLh5NjNpYAsB9W4xMks6WgHSUU8jvSO4rBL_3_VfTbqdEDplHYA0ENnRuqR-sRrEWVbLGGf4k1MES6nZ1SdMxxqmH4xVCydcJCdfMR0mRH52UC6-7SFSisHfdsFLdBbgo42cIz-tESortcmmSimn__lX_ETGQD95AmPseFtIqzwcJg-0hS-CLNboSvsL33i8_gA-vH-SM7vosivC79TaZsMxrjaRtvMRH_lJAdZBlN2AQnd7bry6aRopmzMaSVXA93L-hEM');"></div>
+<span class="font-h2-heading text-h2-heading">System Design Basics</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-[6px] bg-surface-tertiary text-success-green font-label-caption text-label-caption font-medium border border-success-green/20">
+                                    Published
+                                </span>
+</td>
+<td class="p-4 hidden sm:table-cell">850</td>
+<td class="p-4 hidden md:table-cell">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="thumb_up">thumb_up</span> 28</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span> 4</span>
+</div>
+</td>
+<td class="p-4 hidden lg:table-cell text-on-surface-variant">Jan 10, 2025</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="View">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Draft -->
+<tr class="bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<td class="p-4">
+<input class="w-4 h-4 rounded-[3px] border-outline text-primary-container focus:ring-primary-container focus:ring-offset-0" type="checkbox"/>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high flex-shrink-0 flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
+</div>
+<span class="font-h2-heading text-h2-heading text-on-surface-variant">Introduction to Redis</span>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-[6px] bg-surface-container-high text-on-surface-variant font-label-caption text-label-caption font-medium border border-outline-variant">
+                                    Draft
+                                </span>
+</td>
+<td class="p-4 hidden sm:table-cell text-on-surface-variant">-</td>
+<td class="p-4 hidden md:table-cell text-on-surface-variant">-</td>
+<td class="p-4 hidden lg:table-cell text-on-surface-variant">Jan 18, 2025</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1 bg-white border border-neutral-medium-gray text-primary-container hover:bg-neutral-off-white rounded-[8px] font-body-standard text-label-caption transition-colors">
+                                        Publish
+                                    </button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary-container hover:bg-primary-container/10 rounded transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-surface-variant flex items-center justify-between">
+<span class="font-body-regular text-label-caption text-on-surface-variant">Showing 1-3 of 12 posts</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray text-outline hover:bg-neutral-off-white hover:text-primary-container transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary font-body-standard text-body-standard">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray text-on-surface-variant hover:bg-neutral-off-white hover:text-primary-container transition-colors font-body-standard text-body-standard">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray text-on-surface-variant hover:bg-neutral-off-white hover:text-primary-container transition-colors font-body-standard text-body-standard">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray text-on-surface-variant hover:bg-neutral-off-white hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

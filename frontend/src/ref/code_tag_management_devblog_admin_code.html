@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tag Management - DevBlog Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#ac3800",
+                      "inverse-surface": "#303030",
+                      "danger-red": "#F2706E",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-variant": "#e2e2e2",
+                      "primary": "#003bb5",
+                      "surface-tertiary": "#F3FBF6",
+                      "on-secondary-container": "#5e6368",
+                      "tertiary": "#842900",
+                      "surface-container-highest": "#e2e2e2",
+                      "surface-container-high": "#e8e8e8",
+                      "primary-blue-darker": "#092B89",
+                      "secondary-fixed-dim": "#c2c7cd",
+                      "on-secondary-fixed-variant": "#42474c",
+                      "error-red": "#DB4241",
+                      "surface-tint": "#1b51dd",
+                      "on-surface": "#1b1b1b",
+                      "on-tertiary-fixed": "#380d00",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#dce1ff",
+                      "on-primary-container": "#d2d9ff",
+                      "neutral-dark-gray": "#27272A",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#434655",
+                      "primary-blue-dark": "#0F3BB7",
+                      "secondary": "#5a5f64",
+                      "surface-dim": "#dadada",
+                      "outline-variant": "#c4c5d7",
+                      "surface": "#f9f9f9",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001550",
+                      "secondary-container": "#dce0e6",
+                      "background": "#f9f9f9",
+                      "neutral-medium-gray": "#EEEEEE",
+                      "surface-container-low": "#f3f3f3",
+                      "on-secondary-fixed": "#171c20",
+                      "inverse-primary": "#b6c4ff",
+                      "tertiary-fixed": "#ffdbcf",
+                      "surface-bright": "#f9f9f9",
+                      "error-container": "#ffdad6",
+                      "neutral-off-white": "#F5F9FF",
+                      "neutral-light-gray": "#F4F4F5",
+                      "accent-blue-light": "#8FB6FF",
+                      "surface-container": "#eeeeee",
+                      "secondary-fixed": "#dfe3e9",
+                      "inverse-on-surface": "#f1f1f1",
+                      "success-green": "#399E43",
+                      "on-tertiary-fixed-variant": "#822800",
+                      "neutral-charcoal": "#18181B",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "primary-container": "#1d52de",
+                      "on-background": "#1b1b1b",
+                      "tertiary-fixed-dim": "#ffb59b",
+                      "outline": "#747686",
+                      "primary-fixed-dim": "#b6c4ff",
+                      "on-tertiary-container": "#ffd1c1",
+                      "on-primary-fixed-variant": "#003ab3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "sm": "12px",
+                      "sidebar-width": "248px",
+                      "xs": "8px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "xxl": "48px",
+                      "xl": "32px",
+                      "layout-max": "1088px"
+              },
+              "fontFamily": {
+                      "body-standard": [
+                              "workSans"
+                      ],
+                      "h2-heading": [
+                              "manrope"
+                      ],
+                      "h1-display": [
+                              "manrope"
+                      ],
+                      "link-standalone": [
+                              "workSans"
+                      ],
+                      "body-regular": [
+                              "workSans"
+                      ],
+                      "nav-display": [
+                              "workSans"
+                      ],
+                      "label-caption": [
+                              "workSans"
+                      ]
+              },
+              "fontSize": {
+                      "body-standard": [
+                              "14px",
+                              {
+                                      "lineHeight": "19.25px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "h2-heading": [
+                              "16px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h1-display": [
+                              "24px",
+                              {
+                                      "lineHeight": "30px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "link-standalone": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-regular": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "nav-display": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-lowest text-primary-container font-manrope text-[14px] fixed left-0 top-0 h-full w-[248px] overflow-y-auto border-r border-neutral-medium-gray none hidden lg:flex flex-col py-6 px-4 space-y-2 z-40 shadow-sm">
+<div class="px-4 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold">D</div>
+<div>
+<h1 class="text-lg font-bold text-neutral-charcoal">DevBlog</h1>
+<p class="text-xs text-secondary">Creator Community</p>
+</div>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary h-[36px] rounded-lg font-nav-display hover:bg-primary-blue-dark transition-colors shadow-sm w-full mb-6 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span> New Post
+        </button>
+<div class="flex-1 space-y-1">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-secondary hover:bg-neutral-off-white rounded-lg hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-secondary hover:bg-neutral-off-white rounded-lg hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">explore</span> Explore
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 bg-neutral-off-white text-primary-container border-l-[3px] border-primary-container font-semibold rounded-r-lg" href="#">
+<span class="material-symbols-outlined fill" style="font-variation-settings: 'FILL' 1;">label</span> Tag Management
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-secondary hover:bg-neutral-off-white rounded-lg hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+</div>
+<div class="mt-auto pt-6 border-t border-neutral-medium-gray space-y-1">
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-secondary hover:bg-neutral-off-white rounded-lg hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="px-4 py-2 my-1 flex items-center gap-3 text-secondary hover:bg-neutral-off-white rounded-lg hover:text-primary-container transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span> Support
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-[248px] p-md lg:p-xxl max-w-layout-max mx-auto w-full relative">
+<!-- Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-lg">
+<div>
+<h2 class="font-h1-display text-h1-display text-neutral-charcoal">Tag Management</h2>
+<p class="font-body-regular text-body-regular text-secondary mt-1">System-wide tags visible to all users when creating posts.</p>
+</div>
+<button class="bg-primary-container text-on-primary h-[36px] px-4 rounded-lg font-nav-display hover:bg-primary-blue-dark shadow-sm transition-colors flex items-center justify-center gap-2 whitespace-nowrap self-start sm:self-auto">
+<span class="material-symbols-outlined text-[18px]">add</span> Add new tag
+            </button>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-[14px] border border-neutral-medium-gray p-[20px] shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-neutral-medium-gray text-secondary font-nav-display text-nav-display">
+<th class="pb-3 px-4 font-semibold">Tag</th>
+<th class="pb-3 px-4 font-semibold">Slug</th>
+<th class="pb-3 px-4 font-semibold">Post count</th>
+<th class="pb-3 px-4 font-semibold hidden md:table-cell">Created</th>
+<th class="pb-3 px-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-regular text-body-regular text-on-background">
+<tr class="border-b border-neutral-medium-gray hover:bg-neutral-light-gray transition-colors group">
+<td class="py-4 px-4 font-medium">DSA</td>
+<td class="py-4 px-4 text-secondary">dsa</td>
+<td class="py-4 px-4">1,245</td>
+<td class="py-4 px-4 text-secondary hidden md:table-cell">Oct 12, 2023</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-error-red hover:bg-error-red/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-neutral-medium-gray hover:bg-neutral-light-gray transition-colors group">
+<td class="py-4 px-4 font-medium">Web</td>
+<td class="py-4 px-4 text-secondary">web</td>
+<td class="py-4 px-4">892</td>
+<td class="py-4 px-4 text-secondary hidden md:table-cell">Nov 04, 2023</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-error-red hover:bg-error-red/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-neutral-medium-gray hover:bg-neutral-light-gray transition-colors group">
+<td class="py-4 px-4 font-medium">Cloud</td>
+<td class="py-4 px-4 text-secondary">cloud</td>
+<td class="py-4 px-4">654</td>
+<td class="py-4 px-4 text-secondary hidden md:table-cell">Jan 15, 2024</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-error-red hover:bg-error-red/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-neutral-medium-gray hover:bg-neutral-light-gray transition-colors group">
+<td class="py-4 px-4 font-medium">OS</td>
+<td class="py-4 px-4 text-secondary">os</td>
+<td class="py-4 px-4">432</td>
+<td class="py-4 px-4 text-secondary hidden md:table-cell">Feb 22, 2024</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-error-red hover:bg-error-red/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-neutral-light-gray transition-colors group">
+<td class="py-4 px-4 font-medium">Database</td>
+<td class="py-4 px-4 text-secondary">database</td>
+<td class="py-4 px-4">315</td>
+<td class="py-4 px-4 text-secondary hidden md:table-cell">Mar 10, 2024</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-primary-container hover:bg-primary-container/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded text-secondary hover:text-error-red hover:bg-error-red/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Placeholder -->
+<div class="mt-4 pt-4 border-t border-neutral-medium-gray flex items-center justify-between text-secondary font-label-caption text-label-caption">
+<span>Showing 1 to 5 of 24 tags</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray hover:bg-neutral-off-white text-secondary" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary font-medium">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray hover:bg-neutral-off-white hover:text-primary-container font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray hover:bg-neutral-off-white hover:text-primary-container font-medium">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-neutral-medium-gray hover:bg-neutral-off-white text-secondary">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+<div class="bg-surface-container-lowest rounded-[14px] shadow-[0_10px_25px_rgba(0,0,0,0.15)] w-full max-w-[480px] border border-neutral-medium-gray overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="px-6 py-4 border-b border-neutral-medium-gray flex items-center justify-between">
+<h3 class="font-h2-heading text-h2-heading text-neutral-charcoal">Add new tag</h3>
+<button class="text-secondary hover:text-neutral-charcoal transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-6 space-y-4">
+<div class="space-y-1">
+<label class="font-body-standard text-body-standard text-neutral-charcoal block" for="tagName">Tag name</label>
+<input class="w-full h-[36px] px-3 border border-neutral-medium-gray rounded focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-accent-blue-light/50 font-body-regular text-body-regular placeholder-secondary transition-all" id="tagName" placeholder="e.g. Artificial Intelligence" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-body-standard text-body-standard text-neutral-charcoal block" for="tagSlug">Slug</label>
+<div class="flex items-center">
+<span class="h-[36px] px-3 bg-neutral-light-gray border border-r-0 border-neutral-medium-gray rounded-l text-secondary font-body-regular text-body-regular flex items-center">devblog.com/tags/</span>
+<input class="flex-1 h-[36px] px-3 border border-neutral-medium-gray rounded-r focus:outline-none focus:border-primary-container focus:ring-2 focus:ring-accent-blue-light/50 font-body-regular text-body-regular placeholder-secondary transition-all" id="tagSlug" placeholder="artificial-intelligence" type="text"/>
+</div>
+<p class="font-label-caption text-label-caption text-secondary mt-1">The URL-friendly version of the name. Usually all lowercase and contains only letters, numbers, and hyphens.</p>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-6 py-4 bg-neutral-light-gray border-t border-neutral-medium-gray flex items-center justify-end gap-3">
+<button class="h-[36px] px-4 bg-surface-container-lowest text-primary-container border border-neutral-medium-gray rounded-lg font-nav-display text-nav-display hover:bg-neutral-off-white transition-colors">
+                    Cancel
+                </button>
+<button class="h-[36px] px-4 bg-primary-container text-on-primary rounded-lg font-nav-display text-nav-display hover:bg-primary-blue-dark shadow-sm transition-colors">
+                    Create tag
+                </button>
+</div>
+</div>
+</div>
+</body></html>
