@@ -12,12 +12,281 @@ datasource db {
   provider = "postgresql"
 }
 
-model User {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  password String 
+// ============================================================
+// ENUMS
+// ============================================================
 
+enum Role {
+  reader
+  writer
+  admin
+}
+
+enum PostStatus {
+  draft
+  published
+  archived
+}
+
+enum ReactionType {
+  like
+  love
+  insightful
+  funny
+}
+
+enum NotificationType {
+  like
+  comment
+  follow
+  mention
+}
+
+// ============================================================
+// 1. USERS
+// ============================================================
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique @db.VarChar(255)
+  name         String   @db.VarChar(100)
+  nickname     String?  @unique @db.VarChar(50)
+  avatarUrl    String?  @db.Text
+  role         Role     @default(writer)
+  passwordHash String?  @db.Text
+  oauthProvider String? @db.VarChar(50)
+  oauthId      String?  @db.VarChar(255)
+  isBanned     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  posts               Post[]
+  comments            Comment[]
+  reactions           Reaction[]
+  bookmarks           Bookmark[]
+  following           Follow[]       @relation("follower")
+  followers           Follow[]       @relation("following")
+  sentNotifications   Notification[] @relation("actor")
+  receivedNotifications Notification[] @relation("recipient")
+  postViews           PostView[]
+
+  @@index([email])
+  @@index([nickname])
+  @@map("users")
+}
+
+// ============================================================
+// 2. POSTS
+// ============================================================
+
+model Post {
+  id                  String     @id @default(uuid()) @db.Uuid
+  authorId            String     @db.Uuid
+  title               String     @db.VarChar(255)
+  slug                String     @unique @db.VarChar(255)
+  content             String     @db.Text
+  status              PostStatus @default(draft)
+  thumbnailUrl        String?    @db.Text
+  readingTimeMinutes  Int?        @default(0)
+  viewCount           Int?        @default(0)
+  publishedAt         DateTime?
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+
+  // Relations
+  author        User           @relation(fields: [authorId], references: [id])
+  comments      Comment[]
+  reactions     Reaction[]
+  bookmarks     Bookmark[]
+  postTags      PostTag[]
+  postCategories PostCategory[]
+  notifications Notification[]
+  postViews     PostView[]
+
+  @@index([authorId])
+  @@index([status, publishedAt])
+  @@index([slug])
+  @@map("posts")
+}
+
+// ============================================================
+// 3. CATEGORIES
+// ============================================================
+
+model Category {
+  id   String @id @default(uuid()) @db.Uuid
+  name String @unique @db.VarChar(100)
+  slug String @unique @db.VarChar(100)
+
+  // Relations
+  postCategories PostCategory[]
+
+  @@map("categories")
+}
+
+// ============================================================
+// 4. TAGS
+// ============================================================
+
+model Tag {
+  id   String @id @default(uuid()) @db.Uuid
+  name String @unique @db.VarChar(100)
+  slug String @unique @db.VarChar(100)
+
+  // Relations
+  postTags PostTag[]
+
+  @@map("tags")
+}
+
+// ============================================================
+// 5. POST_CATEGORIES (junction)
+// ============================================================
+
+model PostCategory {
+  postId     String @db.Uuid
+  categoryId String @db.Uuid
+
+  post     Post     @relation(fields: [postId],     references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([postId, categoryId])
+  @@map("post_categories")
+}
+
+// ============================================================
+// 6. POST_TAGS (junction)
+// ============================================================
+
+model PostTag {
+  postId String @db.Uuid
+  tagId  String @db.Uuid
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId],  references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+  @@map("post_tags")
+}
+
+// ============================================================
+// 7. COMMENTS
+// ============================================================
+
+model Comment {
+  id        String   @id @default(uuid()) @db.Uuid
+  postId    String   @db.Uuid
+  userId    String   @db.Uuid
+  content   String   @db.Text
+  isDeleted Boolean  @default(false)
   createdAt DateTime @default(now())
-  status String @default("active")
+  updatedAt DateTime @updatedAt
+
+  post          Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user          User           @relation(fields: [userId], references: [id])
+  notifications Notification[]
+
+  @@index([postId])
+  @@index([userId])
+  @@map("comments")
+}
+
+// ============================================================
+// 8. REACTIONS
+// ============================================================
+
+model Reaction {
+  id        String       @id @default(uuid()) @db.Uuid
+  postId    String       @db.Uuid
+  userId    String       @db.Uuid
+  type      ReactionType @default(like)
+  createdAt DateTime     @default(now())
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([postId, userId])
+  @@index([postId])
+  @@map("reactions")
+}
+
+// ============================================================
+// 9. BOOKMARKS
+// ============================================================
+
+model Bookmark {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  postId    String   @db.Uuid
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@index([userId])
+  @@map("bookmarks")
+}
+
+// ============================================================
+// 10. FOLLOWS (self-relation)
+// ============================================================
+
+model Follow {
+  followerId  String   @db.Uuid
+  followingId String   @db.Uuid
+  createdAt   DateTime @default(now())
+
+  follower  User @relation("follower",  fields: [followerId],  references: [id], onDelete: Cascade)
+  following User @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@id([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("follows")
+}
+
+// ============================================================
+// 11. NOTIFICATIONS
+// ============================================================
+
+model Notification {
+  id          String           @id @default(uuid()) @db.Uuid
+  recipientId String           @db.Uuid
+  actorId     String           @db.Uuid
+  type        NotificationType
+  postId      String?          @db.Uuid
+  commentId   String?          @db.Uuid
+  isRead      Boolean          @default(false)
+  emailSent   Boolean          @default(false)
+  createdAt   DateTime         @default(now())
+
+  recipient User     @relation("recipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  actor     User     @relation("actor",     fields: [actorId],     references: [id], onDelete: Cascade)
+  post      Post?    @relation(fields: [postId],    references: [id], onDelete: Cascade)
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([recipientId, isRead])
+  @@index([recipientId, createdAt])
+  @@map("notifications")
+}
+
+// ============================================================
+// 12. POST_VIEWS
+// ============================================================
+
+model PostView {
+  id        String   @id @default(uuid()) @db.Uuid
+  postId    String   @db.Uuid
+  userId    String?  @db.Uuid
+  ipAddress String?  @db.VarChar(45)
+  viewedAt  DateTime @default(now())
+
+  post Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([postId])
+  @@index([postId, viewedAt])
+  @@map("post_views")
 }
