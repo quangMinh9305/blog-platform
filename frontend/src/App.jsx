@@ -26,7 +26,7 @@ function App() {
       {/* <div className="App"> */}
         <Routes>
           {/* Auth routes */}
-          
+          {/*test  */}
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
