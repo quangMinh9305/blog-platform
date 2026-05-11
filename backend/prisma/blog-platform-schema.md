@@ -1,5 +1,14 @@
 # Blog Platform — Database Schema
 
+When there is any changes into database, please run 2 following command
+
+```bash
+npx prisma migrate dev --name <name - similar to commit> # similar to commit in git
+
+npx prisma generate # similar with push in git
+
+```
+
 ## ENUMs
 
 Shared enums used across multiple tables:
@@ -71,7 +80,7 @@ Shared enums used across multiple tables:
 
 ---
 
-## 5. post_categories _(junction)_
+## 5. post*categories *(junction)\_
 
 | Field                        | Type                | Description                                                   |
 | ---------------------------- | ------------------- | ------------------------------------------------------------- |
@@ -82,7 +91,7 @@ Shared enums used across multiple tables:
 
 ---
 
-## 6. post_tags _(junction)_
+## 6. post*tags *(junction)\_
 
 | Field                   | Type                | Description                                              |
 | ----------------------- | ------------------- | -------------------------------------------------------- |
