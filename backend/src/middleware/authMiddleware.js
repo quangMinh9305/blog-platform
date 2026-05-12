@@ -8,10 +8,10 @@ export const authMiddleware = async (req, res, next) => {
   // "Bearer" play as a role of salt in test in Postman
   let token;
   if (
-    req.header.authorization &&
-    req.header.authorization.startsWith("Bearer")
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.header.authorization.split(" ")[1];
+    token = req.headers.authorization.split(" ")[1];
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }

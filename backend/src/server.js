@@ -1,6 +1,8 @@
 import express from "express";
 import { config } from "dotenv";
 import { connectDB, disconnectDB } from "./config/db.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // Import Routes
 import authRoute from "./routes/authRoute.js";
@@ -13,6 +15,12 @@ const app = express();
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Using cors
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+// Cookies-parser
+app.use(cookieParser());
 
 // API Routes
 app.use("/auth", authRoute);

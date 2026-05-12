@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const Register = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -28,13 +30,15 @@ const Register = () => {
     }
     
     setLoading(true);
-    // Giả lập gọi API đăng ký
-    setTimeout(() => {
+    try {
+      await register(formData.fullName, formData.email, formData.password);
+      navigate('/');
+    } catch (err) {
+      const msg = err?.error || 'Registration failed';
+      setError(msg);
+    } finally {
       setLoading(false);
-      // Hiển thị thông báo và yêu cầu đăng nhập ở bước riêng biệt
-      alert("Registration successful! Please log in with your new account.");
-      navigate('/login');
-    }, 1000);
+    }
   };
 
   return (

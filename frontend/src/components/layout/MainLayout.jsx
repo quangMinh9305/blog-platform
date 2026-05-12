@@ -1,7 +1,29 @@
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const MainLayout = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Đóng dropdown khi click ra ngoài
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
+  };
+
   return (
     <div className="bg-neutral-off-white min-h-screen text-on-surface flex font-body-regular text-body-regular">
       
@@ -46,14 +68,9 @@ const MainLayout = () => {
           </button>
         </div>
 
-        {/* Footer Navigation & User Info */}
+        {/* Footer User Info */}
         <div className="mt-auto border-t border-surface-container-high pt-4">
-          <Link to="/settings" className="px-4 py-2 my-1 flex items-center gap-3 text-on-surface-variant hover:bg-neutral-light-gray rounded-lg transition-all">
-            <span className="material-symbols-outlined">settings</span>
-            <span className="font-nav-display text-nav-display">Settings</span>
-          </Link>
-          
-          <div className="mt-4 px-4 flex items-center gap-3 py-2">
+          <div className="px-4 flex items-center gap-3 py-2">
             <img 
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHp3VozXHVdhk32vSjhpvYxfDujzS72GYe1G1O-VHsm2GBnwhDcFOVOSvrkYtSjwvzKm6iLK7eZgL08hQgzDPN-CyVxCl5W19yJ-60vZzC32gMHrs3h-I-wUCNcGtEFLcbSGay4iRmDIJL1uj-oQ22wUFJLweVtiCXdLBVQkfZKhqlPHLax9CIO_tVuXZhsGooHPJursMzz5kXPuBYpqwhLQBJyzn5f-EriyI-3BponId6PdC_bOAkCSInySHu8ySvaS2qRk3SPkI" 
               alt="User Avatar" 
@@ -104,14 +121,45 @@ const MainLayout = () => {
               <button className="text-on-surface-variant hover:text-primary-container hover:bg-neutral-light-gray p-2 rounded-full transition-colors">
                 <span className="material-symbols-outlined">notifications</span>
               </button>
-              <button className="flex items-center gap-2 hover:bg-neutral-light-gray p-1 pr-3 rounded-full transition-colors border border-transparent hover:border-surface-container">
-                <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZRHfQoRBvirTtQtyJ40J5rcpERGznBGZ9m1gppaG5hI1wzuQrFKDW669gcGN9YWZuMUuOC9fx9BtJ84X1-_D5U3Tv9-t_Tl6gtc6dwhRW3joSNuPVMT2tg1pVOWDUAsXflZ1-9Oai7TUaxJi5Z5mIMahhMzObqhEXoyY2XFR5S5eYWTyEG30lSyEgWVdHKpUbe9m2Utn1FdZWfr_ESBzltZov4JTeBn4IkTrQmM94iKD1szmlfU81T82G9FP-Dm8p4UQooh1QSHE" 
-                  alt="Profile" 
-                  className="w-8 h-8 rounded-full object-cover"
-                />
-                <span className="material-symbols-outlined text-[20px] text-outline">expand_more</span>
-              </button>
+
+              {/* Avatar dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen(prev => !prev)}
+                  className="flex items-center gap-2 hover:bg-neutral-light-gray p-1 pr-3 rounded-full transition-colors border border-transparent hover:border-surface-container"
+                >
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZRHfQoRBvirTtQtyJ40J5rcpERGznBGZ9m1gppaG5hI1wzuQrFKDW669gcGN9YWZuMUuOC9fx9BtJ84X1-_D5U3Tv9-t_Tl6gtc6dwhRW3joSNuPVMT2tg1pVOWDUAsXflZ1-9Oai7TUaxJi5Z5mIMahhMzObqhEXoyY2XFR5S5eYWTyEG30lSyEgWVdHKpUbe9m2Utn1FdZWfr_ESBzltZov4JTeBn4IkTrQmM94iKD1szmlfU81T82G9FP-Dm8p4UQooh1QSHE"
+                    alt="Profile"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                  <span className="material-symbols-outlined text-[20px] text-outline">expand_more</span>
+                </button>
+
+                {dropdownOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-surface-container-lowest border border-surface-container-high rounded-xl shadow-lg py-1 z-50">
+                    <div className="px-4 py-2 border-b border-surface-container-high">
+                      <p className="font-body-standard text-body-standard text-on-surface truncate">{user?.name ?? 'User'}</p>
+                      <p className="font-label-caption text-label-caption text-on-surface-variant truncate">{user?.email ?? ''}</p>
+                    </div>
+                    <Link
+                      to="/settings"
+                      onClick={() => setDropdownOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-neutral-light-gray transition-colors font-body-standard text-body-standard"
+                    >
+                      <span className="material-symbols-outlined text-[20px]">settings</span>
+                      Settings
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-3 px-4 py-2 text-danger-red hover:bg-neutral-light-gray transition-colors font-body-standard text-body-standard"
+                    >
+                      <span className="material-symbols-outlined text-[20px]">logout</span>
+                      Log out
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </header>
