@@ -88,6 +88,7 @@ model Post {
   slug                String     @unique @db.VarChar(255)
   content             String     @db.Text
   status              PostStatus @default(draft)
+  excerpt             String?    @db.VarChar(500)
   thumbnailUrl        String?    @db.Text
   readingTimeMinutes  Int?        @default(0)
   viewCount           Int?        @default(0)

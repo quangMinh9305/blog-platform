@@ -3,6 +3,7 @@
 Full-stack technical blog with semantic search and content-based post recommendations — built on pgvector and in-process sentence-transformer embeddings.
 
 <!-- Replace with your demo GIF: record register → write post → search semantically → see related posts (30s, Kap or ScreenToGif) -->
+
 ![Demo GIF](docs/demo.gif)
 
 ---
@@ -27,6 +28,7 @@ Naive `ILIKE` search fails the moment a user's words don't match the author's wo
 **Concrete example:** querying `"react performance"` returns posts about `"frontend optimization"`, `"render bottlenecks"`, and `"memoization patterns"` even when none of those titles contain the words "react" or "performance."
 
 **Semantic search query:**
+
 ```sql
 SELECT id, slug, title, excerpt
 FROM posts
@@ -37,6 +39,7 @@ LIMIT 20;
 ```
 
 **Related posts query** (cosine neighbors of the current post, used in the sidebar widget):
+
 ```sql
 SELECT id, slug, title, excerpt
 FROM posts
@@ -49,22 +52,22 @@ LIMIT 5;
 
 The `<=>` operator is cosine distance (0 = identical, 2 = opposite). A result under 0.3 is semantically close enough to surface.
 
-> *Built semantic search and content-based "related posts" using sentence-transformer embeddings (`all-MiniLM-L6-v2`) stored in PostgreSQL via the pgvector extension. Replaced naive `LIKE` queries with cosine similarity over a 384-dim vector space; queries return semantically related content even without keyword overlap.*
+> _Built semantic search and content-based "related posts" using sentence-transformer embeddings (`all-MiniLM-L6-v2`) stored in PostgreSQL via the pgvector extension. Replaced naive `LIKE` queries with cosine similarity over a 384-dim vector space; queries return semantically related content even without keyword overlap._
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 18, Vite, React Router v6, Tailwind CSS, Material Symbols |
-| **Backend** | Node.js, Express, Prisma ORM, Zod (request validation) |
-| **Database** | PostgreSQL (Neon free tier) + `pgvector` extension |
-| **Embeddings** | `@xenova/transformers` — `Xenova/all-MiniLM-L6-v2`, 384-dim, runs in-process |
-| **Auth** | JWT (24 h expiry) + bcrypt |
-| **Image storage** | Cloudinary (signed uploads) |
-| **Hosting** | Vercel (frontend) + Fly.io (backend) |
-| **Estimated monthly cost** | $0 |
+| Layer                      | Technology                                                                   |
+| -------------------------- | ---------------------------------------------------------------------------- |
+| **Frontend**               | React 18, Vite, React Router v6, Tailwind CSS, Material Symbols              |
+| **Backend**                | Node.js, Express, Prisma ORM, Zod (request validation)                       |
+| **Database**               | PostgreSQL (Neon free tier) + `pgvector` extension                           |
+| **Embeddings**             | `@xenova/transformers` — `Xenova/all-MiniLM-L6-v2`, 384-dim, runs in-process |
+| **Auth**                   | JWT (24 h expiry) + bcrypt                                                   |
+| **Image storage**          | Cloudinary (signed uploads)                                                  |
+| **Hosting**                | Vercel (frontend) + Fly.io (backend)                                         |
+| **Estimated monthly cost** | $0                                                                           |
 
 ---
 
@@ -81,6 +84,7 @@ graph LR
 ```
 
 Request flow for a semantic search:
+
 1. `GET /api/search?q=react+performance&mode=semantic`
 2. Express embeds the query string (cached pipeline, ~50 ms after warm-up)
 3. pgvector ranks all published posts by cosine distance

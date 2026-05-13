@@ -1,6 +1,6 @@
 # DevBlog — Build Plan (4 days, 2 people)
 
-> Read SPEC.md first. This doc is *how* we build it.
+> Read SPEC.md first. This doc is _how_ we build it.
 
 ---
 
@@ -33,6 +33,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 ## Day 1 — Auth + Posts (foundation, end-to-end thin slice)
 
 ### Person A — Auth + Post CRUD backend
+
 - POST `/api/auth/register` (bcrypt, JWT, validate via zod)
 - POST `/api/auth/login`
 - POST `/api/auth/logout`
@@ -47,6 +48,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Smoke test all endpoints with curl/Postman
 
 ### Person B — Frontend wiring + HTML→JSX conversion
+
 - Set up `lib/api.js` (axios with baseURL + interceptor that attaches JWT from localStorage)
 - Set up `AuthContext` (login/logout/user state)
 - Wire `Login.jsx` + `Register.jsx` to backend
@@ -56,6 +58,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Wire create/edit pages to backend (with TipTap or Quill for rich editor)
 
 ### End of Day 1 demo
+
 > Register → log in → create a post → see it on the post detail page → edit it. Two pages working end-to-end.
 
 ---
@@ -63,6 +66,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 ## Day 2 — THE HERO DAY (do not skip this, do not let it slip)
 
 ### Person A — pgvector + embedding pipeline + search backend
+
 - Install `@xenova/transformers`
 - Write `lib/embed.js` exporting `embed(text): Promise<number[]>` — 384-dim
   - Cache the pipeline across calls (don't re-load the model)
@@ -77,6 +81,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Test: search "frontend optimization" should return Web/React posts even without keyword match
 
 ### Person B — Wire feeds + search UI
+
 - Wire `HomePage.jsx` to GET `/api/posts` (real data, kill the dummy array)
 - Wire `MyPostsPage.jsx` to GET `/api/me/posts` with status tabs
 - Build `/search` page: input + mode toggle (default `semantic`), wire to `/api/search`
@@ -85,6 +90,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Update PostCard to render real post fields
 
 ### End of Day 2 demo
+
 > Search "react performance" → results include posts about "frontend optimization" and "render bottlenecks" via semantic mode, even when "react" isn't in title. **This is the demo moment that earns the interview.**
 
 ---
@@ -92,6 +98,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 ## Day 3 — Interactions + related posts UI + comments
 
 ### Person A — Interactions backend
+
 - POST/DELETE `/api/posts/:id/react` (MVP only sends `type: 'like'`)
 - POST/DELETE `/api/posts/:id/bookmark`
 - POST/DELETE `/api/users/:id/follow`
@@ -103,6 +110,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - POST `/api/upload` (Cloudinary signed upload)
 
 ### Person B — Interactions UI + related posts widget + remaining feeds
+
 - Wire `BookmarksPage.jsx` to API
 - Wire `FollowingFeedPage.jsx` to API
 - Add Like + Bookmark buttons on `PostCard` and `PostDetailPage` (optimistic UI: update state immediately, roll back on error)
@@ -113,6 +121,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Cover image upload in editor
 
 ### End of Day 3 demo
+
 > Full user flow: read a post → react → bookmark → follow author → comment → see related posts → click a related post.
 
 ---
@@ -120,6 +129,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 ## Day 4 — Deploy + polish + demo (+ stretch if time)
 
 ### Person A — Backend deploy
+
 - Deploy backend to Fly.io (`fly launch`, `fly secrets set DATABASE_URL=... JWT_SECRET=... CLOUDINARY_*=...`)
 - Run migration on production DB
 - Run backfill-embeddings on production DB
@@ -127,6 +137,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Buffer: bug fixes from Day 3 demo
 
 ### Person B — Frontend deploy + README + demo
+
 - Deploy frontend to Vercel. Set `VITE_API_URL=<fly-url>`.
 - Write `README.md`:
   - 1-paragraph pitch
@@ -140,6 +151,7 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 - Update CV with the 3-bullet description from SPEC.md
 
 ### Stretch — Real-time comments (only if Days 1–3 hit on time)
+
 - Backend (A): install `socket.io`. Init in server.js. Hook into POST comments controller — after `prisma.comment.create`, emit `comment:new` to room `post:${postId}`.
 - Frontend (B): install `socket.io-client`. PostDetailPage `useEffect` joins/leaves the room on mount/unmount. On `comment:new` event, prepend to comment list.
 - Cost: ~3 hours for both sides. Adds a strong "real-time" bullet to CV.
@@ -149,7 +161,9 @@ The Prisma schema already exists (12 tables) — saves us ~30 min vs writing fro
 ## Conventions
 
 ### MVP scope guard — DO NOT BUILD
+
 The schema includes these tables, but **MVP has no endpoints, no UI, no agent work for them**:
+
 - `notifications` (no API, no Socket.IO push for these)
 - `categories`, `post_categories` (tags only)
 - `post_views` (deferred to stretch)
@@ -160,28 +174,33 @@ The schema includes these tables, but **MVP has no endpoints, no UI, no agent wo
 If your agent suggests building any of these because "the table exists" — refuse and stay on task.
 
 ### Branches
+
 - `main` — always deployable. Protected, no direct push.
 - `feat/<short>` — short-lived (≤24h), squash-merge to main.
 - One person → one feature branch at a time. Never long-running.
 
 ### Commits
+
 - Conventional-ish: `feat: add semantic search`, `fix: jwt expiry`, `chore: seed data`
 - < 72 chars subject line
 
 ### PRs
+
 - Open as **draft** early for visibility.
 - Description includes:
   - **What changed** (1–2 lines)
-  - **AI-assisted notes**: e.g. *"Most route handlers AI-generated; embedding pipeline architecture and error handling hand-written."*
+  - **AI-assisted notes**: e.g. _"Most route handlers AI-generated; embedding pipeline architecture and error handling hand-written."_
   - **Anything to watch**: surprising changes, new dependencies
 - Auto-merge after a teammate's glance + green CI (don't wait overnight on a 4-day sprint).
 
 ### Schema ownership
+
 - **Person A owns Prisma schema.** Person B requests changes via Discord.
 - Every schema change ships with a migration in the same PR.
 - Migration naming: Prisma default (`<timestamp>_<short_description>`) is fine.
 
 ### Env vars
+
 - Every new env var goes into `.env.example` in the same commit.
 - Required:
   - `DATABASE_URL`
@@ -190,12 +209,14 @@ If your agent suggests building any of these because "the table exists" — refu
   - `VITE_API_URL` (frontend)
 
 ### Validation + errors
+
 - **Validation:** zod for all request bodies/queries
 - **Error format:** `{ error: { code: string, message: string, details?: any } }`
 - **Status codes:** 400 validation, 401 unauth, 403 forbidden, 404 not found, 409 conflict, 500 server
 - One central error-handling middleware on the backend
 
 ### Folder structure (backend)
+
 ```
 backend/
 ├── prisma/
@@ -216,6 +237,7 @@ backend/
 ```
 
 ### Folder structure (frontend) — already started
+
 ```
 frontend/src/
 ├── pages/
@@ -239,16 +261,19 @@ frontend/src/
 The agent is a force multiplier — but only if you keep it on a leash. Two people both letting Claude run wild on the same repo will produce a mess.
 
 ### Per-session ritual
-Before *every* Claude Code session:
+
+Before _every_ Claude Code session:
+
 1. `git pull` on `main`. Start a fresh `feat/<task>` branch.
 2. Make sure `CLAUDE.md`, `SPEC.md`, and `PLAN.md` are loaded in the agent's context (Claude Code reads `CLAUDE.md` automatically; reference the others explicitly).
 3. Pick **one** task from your column on the kanban (one issue → one PR).
-4. Tell the agent: *"I'm implementing task X per SPEC.md section Y. Write code + tests. Show me the diff before applying."*
+4. Tell the agent: _"I'm implementing task X per SPEC.md section Y. Write code + tests. Show me the diff before applying."_
 5. Review the diff line-by-line. Reject anything you don't understand.
 6. Run dev server + tests. Paste errors back to the agent. Iterate.
 7. Commit, push, open PR, ping teammate in Discord.
 
 ### Non-negotiables
+
 - **Do not** let the agent design the API or schema. The SPEC is the design.
 - **Do not** let the agent change the Prisma schema unless that's your assigned task.
 - **Do not** let the agent install random packages. Vet every new dependency.
@@ -258,14 +283,17 @@ Before *every* Claude Code session:
 - If the agent wrote code you don't fully understand, ask it to explain and add inline comments. **You will need to defend this code in an interview.**
 
 ### Speed tips
+
 - Write a failing test first → ask agent to make it pass. Faster than back-and-forth.
 - Paste error output verbatim → let agent fix. Don't summarize errors.
 - Have the agent generate seed data, mocks, and README boilerplate. These are pure-typing tasks where it shines.
 - Have the agent write zod schemas from a description; reuse them on both frontend and backend.
 
 ### Tracking what the AI did
+
 For each PR description, add a one-line note like:
-> *AI-assisted: route handlers, zod schemas, tests. Hand-written: schema design, embedding pipeline architecture, error handling logic.*
+
+> _AI-assisted: route handlers, zod schemas, tests. Hand-written: schema design, embedding pipeline architecture, error handling logic._
 
 Three months from now in an interview, you'll thank yourself.
 
@@ -287,7 +315,7 @@ Three months from now in an interview, you'll thank yourself.
 - Long-lived feature branches (>1 day)
 - Both people editing Prisma schema in parallel
 - Letting the agent merge PRs unattended
-- Skipping the morning sync because "we're behind" (you're behind *because* you skipped)
+- Skipping the morning sync because "we're behind" (you're behind _because_ you skipped)
 - Adding scope mid-sprint ("oh, what if we also add OAuth?") — write it down, ignore until after launch
 - Trying to convert all 18 mock pages to JSX (we cut to 10 — stick to the cut)
 - Building Notification/Category/PostView endpoints because the schema has them

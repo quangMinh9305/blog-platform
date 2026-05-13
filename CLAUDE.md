@@ -14,6 +14,7 @@ A technical blog platform built for a 4-day MVP sprint by 2 developers. Built to
 ## Source of truth
 
 Read these in order before doing anything:
+
 1. **`SPEC.md`** — what we're building (features, schema additions, API surface)
 2. **`PLAN.md`** — how we're building it (day split, conventions, AI rules)
 3. **`prisma/schema.prisma`** — database schema (already designed by the team)
@@ -97,7 +98,7 @@ If your task conflicts with any of these, **STOP and ask** — don't decide for 
 - Don't summarize the work after coding — show the diff and let the human review.
 - If you find a bug or design issue while doing your task, **note it as a comment** but don't fix it. Discuss with the human.
 - Cite which file you're editing before showing the diff.
-- For any code you generate that's non-trivial, add a short inline comment explaining the *why*. The human will need to defend this code in interviews.
+- For any code you generate that's non-trivial, add a short inline comment explaining the _why_. The human will need to defend this code in interviews.
 
 ---
 
@@ -106,6 +107,7 @@ If your task conflicts with any of these, **STOP and ask** — don't decide for 
 This is a CV/portfolio project. The goal is **not** to build a complete production blog — it's to build a small, polished system with one impressive feature (semantic search) that gets the developer into interviews.
 
 When making tradeoffs, prefer:
+
 - **Demo-able over feature-complete**
 - **Hero feature working end-to-end over many features half-built**
 - **Clean, defensible code over clever code**

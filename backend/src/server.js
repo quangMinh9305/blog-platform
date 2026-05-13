@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 
 // Import Routes
 import authRoute from "./routes/authRoute.js";
+import postRoute from "./routes/postRoute.js";
 
 config();
 connectDB();
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 // API Routes
 app.use("/auth", authRoute);
+app.use("/posts", postRoute);
 
 const PORT = 5001;
 const server = app.listen(PORT, () => {
